@@ -23,6 +23,7 @@ export default function App() {
   return (
     <div className="app">
       <Navbar cartCount={cart.length} onCartClick={() => {}} />
+      <div className="nav-spacer" />
       <Hero />
 
       <main className="catalog" id="catalog">
