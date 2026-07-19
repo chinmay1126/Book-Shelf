@@ -1,6 +1,10 @@
 import { useMemo, useState } from 'react';
 
+
 import ThemeToggle from './components/ThemeToggle.jsx';
+
+import ScrollToTop from './components/ScrollToTop.jsx';
+
 
 import CustomCursor from './components/CustomCursor.jsx';
 
@@ -28,7 +32,10 @@ export default function App() {
   return (
     <div className="app">
 
+
       <ThemeToggle />
+
+      <ScrollToTop />
 
       <CustomCursor />
 
