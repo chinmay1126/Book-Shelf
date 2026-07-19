@@ -1,0 +1,47 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+body.custom-cursor-active .custom-cursor {
+  opacity: 1;
+}
+
+.custom-cursor__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--leather);
+}
+
+.custom-cursor__ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--leather);
+  background: rgba(184, 92, 44, 0.06);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease,
+    background 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-cursor__ring--hover {
+  width: 50px;
+  height: 50px;
+  border-color: var(--gold);
+  background: rgba(198, 154, 42, 0.12);
+}
+
+.custom-cursor__ring--click {
+  width: 24px;
+  height: 24px;
+}
+
+.custom-cursor--hidden {
+  opacity: 0 !important;
+}
