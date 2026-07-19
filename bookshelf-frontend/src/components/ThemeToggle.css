@@ -1,0 +1,36 @@
+.theme-toggle {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--pine);
+  color: var(--paper);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 900;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--pine-deep);
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    left: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}

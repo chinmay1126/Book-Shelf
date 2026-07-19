@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import ThemeToggle from './components/ThemeToggle.jsx';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import GenreFilter from './components/GenreFilter.jsx';
@@ -22,6 +23,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <ThemeToggle />
       <Navbar cartCount={cart.length} onCartClick={() => {}} />
       <Hero />
 

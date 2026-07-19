@@ -16,10 +16,23 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
-  --radius-card: 6px;
+--radius-card: 6px;
   --shadow-card: 0 2px 0 rgba(34,30,25,0.06), 0 12px 24px -16px rgba(34,30,25,0.35);
 }
 
+:root[data-theme='dark'] {
+  --paper: #1B1712;
+  --paper-dim: #241F18;
+  --ink: #F3ECDD;
+  --ink-soft: #C9BFA9;
+  --leather: #D9793D;
+  --leather-deep: #B85C2C;
+  --pine: #2F6E5F;
+  --pine-deep: #1F4B43;
+  --gold: #E0B94A;
+  --line: rgba(243, 236, 221, 0.12);
+  --shadow-card: 0 2px 0 rgba(0,0,0,0.3), 0 12px 24px -16px rgba(0,0,0,0.6);
+}
 * {
   box-sizing: border-box;
 }
@@ -34,8 +47,8 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
-
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   margin: 0;
