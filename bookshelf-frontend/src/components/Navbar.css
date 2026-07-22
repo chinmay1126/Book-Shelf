@@ -270,3 +270,13 @@
     padding: 12px 18px;
   }
 }
+
+[data-theme="dark"] .nav{
+  background: black;
+  color:white;
+}
+
+[data-theme="dark"] .nav__cart-count{
+  background: white;
+  color:black;
+}

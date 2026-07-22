@@ -150,3 +150,8 @@
     gap: 6px;
   }
 }
+
+[data-theme="dark"] .footer{
+  background: black;
+  color:white;
+}
