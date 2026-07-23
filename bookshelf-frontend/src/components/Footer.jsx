@@ -53,7 +53,7 @@ export default function Footer() {
             <h4 className="footer__col-title">Pages</h4>
             <ul className="footer__col-links">
               <li><Link to="/about">About</Link></li>
-              <li><a href="#privacy">Privacy Policy</a></li>
+              <li><Link to="/privacy">Privacy Policy</Link></li>
             </ul>
           </div>
 
