@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar({ cartCount, onCartClick }) {
@@ -24,7 +25,7 @@ export default function Navbar({ cartCount, onCartClick }) {
           <nav className="nav__links">
             <a href="#shelf">The Shelf</a>
             <a href="#catalog">Browse</a>
-            <a href="#about">About</a>
+            <Link to="/about">About</Link>
           </nav>
 
           {/* Desktop actions */}
@@ -65,7 +66,7 @@ export default function Navbar({ cartCount, onCartClick }) {
           <div className="nav__mobile-menu">
             <a href="#shelf" onClick={() => setMobileOpen(false)}>The Shelf</a>
             <a href="#catalog" onClick={() => setMobileOpen(false)}>Browse</a>
-            <a href="#about" onClick={() => setMobileOpen(false)}>About</a>
+            <Link to="/about" onClick={() => setMobileOpen(false)}>About</Link>
             <input className="nav__search nav__search--mobile" type="search" placeholder="Search titles, authors…" />
           </div>
         )}

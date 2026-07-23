@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 export default function Footer() {
@@ -51,7 +52,7 @@ export default function Footer() {
           <div className="footer__col">
             <h4 className="footer__col-title">Pages</h4>
             <ul className="footer__col-links">
-              <li><a href="#about">About</a></li>
+              <li><Link to="/about">About</Link></li>
               <li><a href="#privacy">Privacy Policy</a></li>
             </ul>
           </div>
