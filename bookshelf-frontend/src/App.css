@@ -174,3 +174,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Error detail under the catalogue's failure state (#319). The page had no
+   error state worth the name — a failed fetch showed one generic line and no
+   way to retry. */
+.catalog__error-detail {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 8px 0 16px;
+}
