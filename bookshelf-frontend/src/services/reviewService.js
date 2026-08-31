@@ -139,6 +139,12 @@ export async function getMyReview(bookId, { signal } = {}) {
   return response.data;
 }
 
+// Aliases for compatibility
+export const getReviews = (bookId, opts = {}, reqOpts = {}) => getBookReviews(bookId, { ...opts, ...reqOpts });
+export const getReviewStats = (bookId, reqOpts = {}) => getReviewBreakdown(bookId, reqOpts);
+export const submitReview = (bookId, data) => createReview({ bookId, ...data });
+export const toggleHelpful = markReviewHelpful;
+
 export default {
   getBookReviews,
   getReviewBreakdown,
@@ -147,4 +153,8 @@ export default {
   deleteReview,
   markReviewHelpful,
   getMyReview,
+  getReviews,
+  getReviewStats,
+  submitReview,
+  toggleHelpful,
 };

@@ -237,9 +237,8 @@ button {
   cursor: pointer;
 }
 
-body.custom-cursor-active,
-body.custom-cursor-active * {
-  cursor: none;
+a, button, [role="button"], label {
+  cursor: pointer;
 }
 
 a {

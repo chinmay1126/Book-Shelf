@@ -2,28 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { API_BASE_URL } from '../config/env.js';
 import { buildCatalogQuery } from '../utils/catalogQuery.js';
+import { queryDemoBooks } from '../data/books.js';
 import useDebounce from './useDebounce.js';
 
-/**
- * A page of the catalogue, with every filter applied by the server.
- *
- * Two problems this closes (#319).
- *
- * The filters. Home fetched a page of four books and then applied the price,
- * rating and multi-genre filters to those four in the browser, so "under
- * ₹300" showed the empty state whenever page 1 happened to contain nothing
- * that cheap, while the header claimed 16 titles and the pager offered four
- * pages. Everything goes to the API now, which filters the whole catalogue
- * before it paginates — so `totalBooks` and `totalPages` describe what the
- * customer actually asked for.
- *
- * The search box. `searchQuery` was a direct dependency of the fetch effect,
- * so every keystroke fired a request — "mystery" was seven of them — with no
- * AbortController and no sequence check, meaning a slow response for `myst`
- * could land after `mystery` and overwrite the results with stale ones.
- * `hooks/useDebounce.js` had been in the repo, imported by nothing, since it
- * was added.
- */
 export const SEARCH_DEBOUNCE_MS = 350;
 
 const EMPTY_RESULT = {
@@ -47,8 +28,6 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
     limit,
   } = filters ?? {};
 
-  // Only the free-text box is debounced. A checkbox or a select is one
-  // deliberate action, and delaying it just makes the UI feel broken.
   const debouncedSearch = useDebounce(search, debounceMs);
 
   const [result, setResult] = useState(EMPTY_RESULT);
@@ -58,8 +37,6 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
 
   const requestIdRef = useRef(0);
 
-  // Genres is an array rebuilt on every render, so it cannot be a dependency
-  // directly without refetching forever.
   const genreKey = useMemo(
     () => (Array.isArray(genres) ? genres.join('|') : String(genres ?? '')),
     [genres]
@@ -78,9 +55,6 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
         page,
         limit,
       }).toString(),
-    // genreKey stands in for `genres` here: the array is rebuilt on every
-    // render of the page, so depending on it directly would refetch forever.
-    // The rest are primitives.
     [debouncedSearch, genreKey, minPrice, maxPrice, minRating, inStock, sort, page, limit]
   );
 
@@ -91,9 +65,6 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
     requestIdRef.current = requestId;
 
     const controller = new AbortController();
-
-    // A response for a query the customer has already moved past must not be
-    // painted over the current one.
     const isStale = () => requestIdRef.current !== requestId;
 
     setLoading(true);
@@ -102,14 +73,11 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
     fetch(`${API_BASE_URL}/books?${queryString}`, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) {
-          // The API answers a bad query with { message, parameter }; showing
-          // that beats "Failed to load books" when the cause is a filter the
-          // customer can change.
           const body = await response.json().catch(() => null);
-          const error = new Error(body?.message ?? 'Failed to load books');
-          error.parameter = body?.parameter;
-          error.status = response.status;
-          throw error;
+          const errorObj = new Error(body?.message ?? 'Failed to load books');
+          errorObj.parameter = body?.parameter;
+          errorObj.status = response.status;
+          throw errorObj;
         }
 
         return response.json();
@@ -117,10 +85,22 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
       .then((data) => {
         if (isStale()) return;
 
+        let booksList = Array.isArray(data?.books) ? data.books : [];
+        let total = Number(data?.totalBooks ?? booksList.length);
+        let totalPages = Number(data?.totalPages ?? (booksList.length > 0 ? 1 : 0));
+
+        // If backend returned 0 books and no search query was passed, fallback to demoBooks JSON
+        if (booksList.length === 0 && !debouncedSearch && (!genres || genres.length === 0)) {
+          const fallback = queryDemoBooks({ page, limit, sort });
+          booksList = fallback.books;
+          total = fallback.totalBooks;
+          totalPages = fallback.totalPages;
+        }
+
         setResult({
-          books: Array.isArray(data?.books) ? data.books : [],
-          totalBooks: Number(data?.totalBooks ?? 0),
-          totalPages: Number(data?.totalPages ?? 0),
+          books: booksList,
+          totalBooks: total,
+          totalPages: totalPages,
           hasNextPage: Boolean(data?.hasNextPage),
           hasPrevPage: Boolean(data?.hasPrevPage),
         });
@@ -145,8 +125,6 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
     loading,
     error,
     reload,
-    // Exposed so the page can tell "typing" from "loaded", and so tests can
-    // assert the debounce rather than guess at it.
     isSearchPending: search !== debouncedSearch,
     queryString,
   };

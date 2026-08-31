@@ -1,19 +1,24 @@
 /* ── Footer shell ── */
 .footer {
+  width: 100%;
+  max-width: 100%;
   background: var(--ink);
   color: var(--paper);
-  margin-top: 80px;
-  padding: 60px 40px 0;
+  margin-top: auto;
+  padding: 60px 48px 0;
+  box-sizing: border-box;
 }
 
 /* ── Main content row ── */
 .footer__inner {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 1320px;
   margin: 0 auto;
   display: flex;
   gap: 64px;
   align-items: flex-start;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 /* ── Left brand block ── */
@@ -102,7 +107,8 @@
 
 /* ── Bottom bar ── */
 .footer__bottom {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 1320px;
   margin: 48px auto 0;
   padding: 20px 0;
   border-top: 1px solid rgba(245, 240, 229, 0.08);
@@ -111,6 +117,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  box-sizing: border-box;
 }
 
 .footer__copy {

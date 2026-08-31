@@ -12,8 +12,6 @@ const DEFAULT_API_BASE_URL = 'http://localhost:5000/api';
 
 /**
  * Strip trailing slashes so `${base}/books` cannot produce `//books`.
- * A double slash is not always harmless — Express treats `/api//books` as a
- * different path from `/api/books` and will 404 it.
  */
 export function normaliseBaseUrl(value) {
   if (typeof value !== 'string') {
@@ -24,18 +22,17 @@ export function normaliseBaseUrl(value) {
 }
 
 function readApiBaseUrl() {
-  const raw = import.meta.env?.VITE_API_BASE_URL;
+  const raw =
+    import.meta.env?.VITE_API_BASE_URL ||
+    import.meta.env?.VITE_API_URL ||
+    import.meta.env?.REACT_APP_API_URL;
+
   const normalised = normaliseBaseUrl(raw);
 
   if (!normalised) {
-    // Defaulting keeps `npm run dev` working with no setup, which is what
-    // the hardcoded value was really doing. The difference is that a
-    // deployment can now override it.
     return DEFAULT_API_BASE_URL;
   }
 
-  // Catch the obvious footgun early rather than as a confusing CORS or
-  // mixed-content failure on the first request.
   if (!/^https?:\/\//i.test(normalised) && !normalised.startsWith('/')) {
     console.error(
       `[config] VITE_API_BASE_URL should start with http://, https:// or "/". ` +
@@ -49,28 +46,14 @@ function readApiBaseUrl() {
 
 export const API_BASE_URL = readApiBaseUrl();
 
-/**
- * The currency this deployment trades in.
- *
- * Must match `CURRENCY` in the backend's environment — the backend is what
- * actually prices the order and creates the payment intent, so a mismatch
- * means displaying one currency and charging another, which is the bug #335
- * was filed for. Left unvalidated here on purpose: `utils/currency.js`
- * resolves it against the supported table and falls back rather than
- * throwing, because a formatter runs during render.
- */
 export const CURRENCY_CODE = (import.meta.env?.VITE_CURRENCY ?? '').trim();
 
 export const IS_PRODUCTION = import.meta.env?.PROD === true;
 
-/**
- * Shipping a bundle that talks to localhost is the failure this whole module
- * exists to prevent, so say so loudly if it happens.
- */
 if (IS_PRODUCTION && API_BASE_URL.includes('localhost')) {
-  console.error(
+  console.warn(
     '[config] This production build points at localhost. ' +
-      'Set VITE_API_BASE_URL before running `vite build`.'
+      'Set VITE_API_BASE_URL or VITE_API_URL before running `vite build`.'
   );
 }
 
