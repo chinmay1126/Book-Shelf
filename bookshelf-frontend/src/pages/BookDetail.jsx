@@ -42,6 +42,7 @@ import VerifiedPurchaseBadge from '../components/VerifiedPurchaseBadge.jsx';
 import BookSpine from '../components/BookSpine.jsx';
 import BookAvailability from '../components/BookAvailability.jsx';
 import BookActions from '../components/BookActions.jsx';
+import ReviewForm from '../components/ReviewForm.jsx';
 
 export default function BookDetail() {
   const { t } = useTranslation();
@@ -320,44 +321,29 @@ export default function BookDetail() {
           <VerifiedPurchaseBadge />
         </div>
 
-        <h2 className="book-review-title">
-          {myReview
-            ? (t('bookDetail.editReview') || 'Edit Your Review')
-            : (t('bookDetail.writeReview') || 'Write a Review')}
-        </h2>
-        <form className="book-review-form" onSubmit={handleReviewSubmit}>
-          <div className="book-review-rating">
-            <Rating value={rating} onChange={setRating} />
-          </div>
-          {reviewError && <p className="book-review-error">{reviewError}</p>}
-          {successMsg && <p className="book-review-success">{successMsg}</p>}
-          <input
-            className="book-review-input"
-            placeholder={t('bookDetail.reviewTitlePlaceholder') || 'Review title (optional)'}
-            value={reviewTitle}
-            onChange={(event) => setReviewTitle(event.target.value)}
-            maxLength={150}
-          />
-          <textarea
-            className="book-review-textarea"
-            placeholder={t('bookDetail.reviewPlaceholder') || 'Share your thoughts...'}
-            value={reviewText}
-            onChange={(event) => setReviewText(event.target.value)}
-            rows={4}
-            maxLength={1000}
-          />
-          <button
-            type="submit"
-            className="book-review-submit-btn"
-            disabled={reviewSubmitting}
-          >
-            {reviewSubmitting
-              ? (t('bookDetail.submitting') || 'Submitting...')
-              : myReview
-                ? (t('bookDetail.updateReview') || 'Update Review')
-                : (t('bookDetail.submitReview') || 'Submit Review')}
-          </button>
-        </form>
+        <ReviewForm
+          bookId={id}
+          existingReview={myReview}
+          bookTitle={book.title}
+          onSubmit={async ({ rating: formRating, title: formTitle, body: formBody }) => {
+            setReviewError('');
+            try {
+              await createReview({
+                bookId: id,
+                rating: formRating,
+                title: formTitle,
+                body: formBody,
+              });
+              setSuccessMsg('Thank you! Your review has been submitted.');
+              setMyReview({ rating: formRating, title: formTitle, body: formBody });
+              setReviewKey((k) => k + 1);
+              setTimeout(() => setSuccessMsg(''), 4000);
+            } catch (err) {
+              setReviewError(err.message || 'Failed to submit review. Please try again.');
+              throw err;
+            }
+          }}
+        />
       </div>
 
       {related.length > 0 && (

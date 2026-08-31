@@ -16,7 +16,7 @@ describe('ReviewForm', () => {
     const onSubmit = vi.fn();
     render(<ReviewForm onSubmit={onSubmit} />);
 
-    const stars = screen.getAllByRole('radio');
+    const stars = screen.getAllByRole('button', { name: /\d Star/i });
     expect(stars).toHaveLength(5);
   });
 
@@ -34,7 +34,7 @@ describe('ReviewForm', () => {
     await user.click(screen.getByRole('button', { name: /submit review/i }));
 
     expect(onSubmit).not.toHaveBeenCalled();
-    expect(screen.getByText(/select a star rating/i)).toBeInTheDocument();
+    expect(screen.getByText(/select a rating/i)).toBeInTheDocument();
   });
 
   it('calls onSubmit with the selected rating', async () => {
@@ -44,7 +44,7 @@ describe('ReviewForm', () => {
     render(<ReviewForm onSubmit={onSubmit} />);
 
     // Click the 4th star.
-    const stars = screen.getAllByRole('radio');
+    const stars = screen.getAllByRole('button', { name: /\d Star/i });
     await user.click(stars[3]);
 
     await user.click(screen.getByRole('button', { name: /submit review/i }));

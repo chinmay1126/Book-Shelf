@@ -57,9 +57,8 @@ export default function StarRating({
           onMouseEnter={() => !disabled && setHoverValue(star)}
           onMouseLeave={() => setHoverValue(0)}
           disabled={disabled}
-          role="radio"
           aria-checked={star === value}
-          aria-label={`${star} star${star > 1 ? 's' : ''}`}
+          aria-label={`${star} Star${star > 1 ? 's' : ''}`}
         >
           {star <= display ? '★' : '☆'}
         </button>

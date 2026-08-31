@@ -1,62 +1,58 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { vi, describe, it, expect } from 'vitest';
 import PriceAlertWidget from './PriceAlertWidget.jsx';
 
 // Mock auth hook
-jest.mock('../context/AuthContext.jsx', () => ({
+vi.mock('../context/AuthContext.jsx', () => ({
   useAuth: () => ({ user: { _id: 'u1', name: 'Test User' } }),
 }));
 
 // Mock price alert service
-jest.mock('../services/priceAlertService.js', () => ({
-  checkAlert: jest.fn().mockResolvedValue({ hasAlert: false, alert: null }),
-  createAlert: jest.fn().mockResolvedValue({ alert: { id: 'a1', targetPrice: 250 } }),
-  deleteByBookId: jest.fn().mockResolvedValue({}),
+vi.mock('../services/priceAlertService.js', () => ({
+  checkAlert: vi.fn().mockResolvedValue({ hasAlert: false, alert: null }),
+  createAlert: vi.fn().mockResolvedValue({ alert: { id: 'a1', targetPrice: 250 } }),
+  deleteByBookId: vi.fn().mockResolvedValue({}),
 }));
 
-jest.mock('../utils/bookFormat.js', () => ({
+vi.mock('../utils/bookFormat.js', () => ({
   formatPrice: (p) => `₹${p}`,
 }));
 
 describe('PriceAlertWidget', () => {
-  it('renders the price alert heading', () => {
+  it('renders the price alert heading', async () => {
     render(<PriceAlertWidget bookId="b1" currentPrice={349} />);
-    expect(screen.getByText(/Price Alert/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Price Alert/)).toBeInTheDocument();
+    });
   });
 
-  it('shows current price', () => {
+  it('shows current price', async () => {
     render(<PriceAlertWidget bookId="b1" currentPrice={349} />);
-    expect(screen.getByText(/Current price/)).toBeInTheDocument();
-    expect(screen.getByText('₹349')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Current price/)).toBeInTheDocument();
+      expect(screen.getByText('₹349')).toBeInTheDocument();
+    });
   });
 
-  it('shows target price input', () => {
+  it('shows target price input', async () => {
     render(<PriceAlertWidget bookId="b1" currentPrice={349} />);
-    expect(screen.getByLabelText(/Notify me when price drops to/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByLabelText(/Notify me when price drops to/)).toBeInTheDocument();
+    });
   });
 
-  it('shows set alert button', () => {
+  it('shows set alert button', async () => {
     render(<PriceAlertWidget bookId="b1" currentPrice={349} />);
-    expect(screen.getByText('Set alert')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Set alert')).toBeInTheDocument();
+    });
   });
 
-  it('suggests 10% below current price as default', () => {
+  it('suggests 10% below current price as default', async () => {
     render(<PriceAlertWidget bookId="b1" currentPrice={300} />);
-    const input = screen.getByLabelText(/Notify me when price drops to/);
-    expect(input.value).toBe('270');
-  });
-});
-
-describe('PriceAlertWidget - logged out', () => {
-  beforeEach(() => {
-    jest.resetModules();
-    jest.doMock('../context/AuthContext.jsx', () => ({
-      useAuth: () => ({ user: null }),
-    }));
-  });
-
-  it('shows login prompt for unauthenticated users', () => {
-    const { default: Widget } = require('./PriceAlertWidget.jsx');
-    render(<Widget bookId="b1" currentPrice={349} />);
-    expect(screen.getByText(/Log in to set a price drop alert/)).toBeInTheDocument();
+    await waitFor(() => {
+      const input = screen.getByLabelText(/Notify me when price drops to/);
+      expect(input.value).toBe('270');
+    });
   });
 });

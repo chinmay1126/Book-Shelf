@@ -5,22 +5,23 @@ import './ReviewForm.css';
 /**
  * Form for submitting or editing a book review.
  *
- * In "edit" mode the fields are pre-populated from the existing review.
- * The submit button is disabled until a rating is selected and the form
- * is not already submitting.
+ * Supports both `existingReview` and `initial` props for edit pre-population.
  */
 export default function ReviewForm({
   bookId,
   existingReview = null,
+  initial = null,
   onSubmit,
   onCancel,
   bookTitle = '',
+  maxLength = 2000,
 }) {
-  const isEdit = Boolean(existingReview);
+  const reviewData = existingReview || initial;
+  const isEdit = Boolean(reviewData);
 
-  const [rating, setRating] = useState(existingReview?.rating || 0);
-  const [title, setTitle] = useState(existingReview?.title || '');
-  const [body, setBody] = useState(existingReview?.body || '');
+  const [rating, setRating] = useState(reviewData?.rating || 0);
+  const [title, setTitle] = useState(reviewData?.title || '');
+  const [body, setBody] = useState(reviewData?.body || '');
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -28,13 +29,13 @@ export default function ReviewForm({
   function validate() {
     const errs = {};
     if (!rating || rating < 1 || rating > 5) {
-      errs.rating = 'Please select a star rating';
+      errs.rating = 'Please select a rating';
     }
     if (title.length > 150) {
       errs.title = 'Title must be at most 150 characters';
     }
-    if (body.length > 5000) {
-      errs.body = 'Review must be at most 5000 characters';
+    if (body.length > maxLength) {
+      errs.body = `Review must be at most ${maxLength} characters`;
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -80,7 +81,10 @@ export default function ReviewForm({
         </label>
         <StarRating
           value={rating}
-          onChange={setRating}
+          onChange={(newRating) => {
+            setRating(newRating);
+            if (errors.rating) setErrors((prev) => ({ ...prev, rating: '' }));
+          }}
           size="lg"
           label="Your rating"
         />
@@ -120,11 +124,11 @@ export default function ReviewForm({
           onChange={(e) => setBody(e.target.value)}
           placeholder="Share your thoughts about this book…"
           rows={6}
-          maxLength={5000}
+          maxLength={maxLength}
           disabled={submitting}
         />
         <span className="review-form__char-count">
-          {body.length}/5000
+          {body.length}/{maxLength}
         </span>
         {errors.body && <span className="review-form__error">{errors.body}</span>}
       </div>
@@ -151,7 +155,7 @@ export default function ReviewForm({
         <button
           type="submit"
           className="review-form__btn review-form__btn--submit"
-          disabled={submitting || rating === 0}
+          disabled={submitting}
         >
           {submitting
             ? isEdit ? 'Updating…' : 'Submitting…'

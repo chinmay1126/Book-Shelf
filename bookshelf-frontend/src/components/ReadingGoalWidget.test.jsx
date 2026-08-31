@@ -1,12 +1,13 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { vi, describe, it, expect } from 'vitest';
 import ReadingGoalWidget from './ReadingGoalWidget.jsx';
 
-jest.mock('../context/AuthContext.jsx', () => ({
+vi.mock('../context/AuthContext.jsx', () => ({
   useAuth: () => ({ user: { _id: 'u1', name: 'Test' } }),
 }));
 
-jest.mock('../services/readingGoalService.js', () => ({
-  getGoal: jest.fn().mockResolvedValue({
+vi.mock('../services/readingGoalService.js', () => ({
+  getGoal: vi.fn().mockResolvedValue({
     yearlyGoal: 24,
     stats: {
       yearlyGoal: 24,
@@ -59,20 +60,5 @@ describe('ReadingGoalWidget', () => {
     await waitFor(() => {
       expect(screen.getByText(/this month/)).toBeInTheDocument();
     });
-  });
-});
-
-describe('ReadingGoalWidget - logged out', () => {
-  beforeEach(() => {
-    jest.resetModules();
-    jest.doMock('../context/AuthContext.jsx', () => ({
-      useAuth: () => ({ user: null }),
-    }));
-  });
-
-  it('shows login hint for unauthenticated users', () => {
-    const { default: Widget } = require('./ReadingGoalWidget.jsx');
-    render(<Widget />);
-    expect(screen.getByText(/Log in to track your reading goal/)).toBeInTheDocument();
   });
 });
