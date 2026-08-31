@@ -5,6 +5,7 @@ import {
   collectGenres,
   QueryValidationError,
 } from '../utils/bookQuery.js';
+import eventBus, { EVENTS } from '../utils/eventEmitter.js';
 
 // @desc    List books with search, filter, sort and pagination
 // @route   GET /api/books
@@ -79,11 +80,31 @@ export const createBook = (req, res, next) => {
 // @access  Admin
 export const updateBook = (req, res, next) => {
   try {
+    const oldBook = bookRepository.getBookById(req.params.id);
     const updated = bookRepository.updateBook(req.params.id, req.body);
     if (!updated) {
       return res.status(404).json({
         message: `Book not found: ${req.params.id}`,
       });
+    }
+
+    if (oldBook) {
+      if (typeof req.body.price === 'number' && req.body.price < oldBook.price) {
+        eventBus.emitAsync(EVENTS.BOOK_PRICE_UPDATED, {
+          bookId: updated.id,
+          oldPrice: oldBook.price,
+          newPrice: updated.price,
+          bookTitle: updated.title,
+        });
+      }
+
+      if (typeof req.body.inventory === 'number' && req.body.inventory > oldBook.inventory) {
+        eventBus.emitAsync(EVENTS.BOOK_STOCK_REPLENISHED, {
+          bookId: updated.id,
+          newStock: updated.inventory,
+          bookTitle: updated.title,
+        });
+      }
     }
 
     res.status(200).json({
@@ -120,10 +141,19 @@ export const deleteBook = (req, res, next) => {
 // @access  Admin
 export const updateBookStock = (req, res, next) => {
   try {
+    const oldBook = bookRepository.getBookById(req.params.id);
     const updated = bookRepository.updateBookStock(req.params.id, req.body.inventory);
     if (!updated) {
       return res.status(404).json({
         message: `Book not found: ${req.params.id}`,
+      });
+    }
+
+    if (oldBook && typeof req.body.inventory === 'number' && req.body.inventory > oldBook.inventory) {
+      eventBus.emitAsync(EVENTS.BOOK_STOCK_REPLENISHED, {
+        bookId: updated.id,
+        newStock: updated.inventory,
+        bookTitle: updated.title,
       });
     }
 

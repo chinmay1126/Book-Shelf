@@ -11,8 +11,12 @@ import readingGoalRoutes from './routes/readingGoalRoutes.js';
 import stockAlertRoutes from './routes/stockAlertRoutes.js';
 import priceAlertRoutes from './routes/priceAlertRoutes.js';
 import bookClubRoutes from './routes/bookClubRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
 import stripeWebhookHandler from './webhook/stripeWebhook.js';
 import { configureTrustProxy } from './config/trustProxy.js';
+
+// Initialize notification subscribers on application boot
+import './subscribers/notificationSubscribers.js';
 
 const app = express();
 
@@ -43,6 +47,7 @@ app.use('/api/reading-goals', readingGoalRoutes);
 app.use('/api/stock-alerts', stockAlertRoutes);
 app.use('/api/price-alerts', priceAlertRoutes);
 app.use('/api/book-clubs', bookClubRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
