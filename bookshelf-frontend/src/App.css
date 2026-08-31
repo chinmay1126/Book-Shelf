@@ -14,11 +14,13 @@
 /* ─── Catalog page ─────────────────────────────────────────────────────── */
 
 .catalog {
-  padding: 88px 32px 40px;
+  padding: 88px 3% 40px;
+  width: 100%;
 }
 
 .catalog__inner {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -89,8 +91,8 @@
 
 .catalog__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 /* ─── Empty / active-filter indicator ──────────────────────────────────── */
@@ -162,6 +164,12 @@
 }
 
 /* ─── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 1280px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 @media (max-width: 960px) {
   .catalog__layout {

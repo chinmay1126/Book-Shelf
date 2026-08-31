@@ -22,7 +22,8 @@
 }
 
 .compare-bar__inner {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0.75rem 1.25rem;
   display: flex;

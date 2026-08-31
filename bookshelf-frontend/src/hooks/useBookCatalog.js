@@ -89,8 +89,13 @@ export function useBookCatalog(filters, { debounceMs = SEARCH_DEBOUNCE_MS } = {}
         let total = Number(data?.totalBooks ?? booksList.length);
         let totalPages = Number(data?.totalPages ?? (booksList.length > 0 ? 1 : 0));
 
-        // If backend returned 0 books and no search query was passed, fallback to demoBooks JSON
-        if (booksList.length === 0 && !debouncedSearch && (!genres || genres.length === 0)) {
+        // If backend returned empty books array on default initial query, fallback to demoBooks JSON
+        if (
+          Array.isArray(data?.books) &&
+          data.books.length === 0 &&
+          !debouncedSearch &&
+          (!genres || genres.length === 0)
+        ) {
           const fallback = queryDemoBooks({ page, limit, sort });
           booksList = fallback.books;
           total = fallback.totalBooks;

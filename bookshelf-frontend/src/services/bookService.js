@@ -27,13 +27,8 @@ export async function getBookById(bookId, { signal } = {}) {
     });
     return response.data;
   } catch (error) {
-    if (error?.status === 404) {
+    if (error?.status === 404 || error?.code === 'NOT_FOUND' || error instanceof BookNotFoundError) {
       throw new BookNotFoundError(cleanId);
-    }
-    // Fallback to local demo book if network is offline
-    const localBook = demoBooks.find((b) => b.id === cleanId);
-    if (localBook) {
-      return localBook;
     }
     throw error;
   }

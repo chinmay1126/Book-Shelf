@@ -1,13 +1,15 @@
 .wishlist-page {
   min-height: 70vh;
-  padding: 4rem 1.5rem;
+  width: 100%;
+  padding: 4rem 2%;
   background-color: var(--bg-app);
   color: var(--text-main);
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 .wishlist-page__inner {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 

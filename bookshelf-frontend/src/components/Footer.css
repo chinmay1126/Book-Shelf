@@ -5,14 +5,14 @@
   background: var(--ink);
   color: var(--paper);
   margin-top: auto;
-  padding: 60px 48px 0;
+  padding: 60px 2% 0;
   box-sizing: border-box;
 }
 
 /* ── Main content row ── */
 .footer__inner {
   width: 100%;
-  max-width: 1320px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   gap: 64px;
@@ -108,7 +108,7 @@
 /* ── Bottom bar ── */
 .footer__bottom {
   width: 100%;
-  max-width: 1320px;
+  max-width: 100%;
   margin: 48px auto 0;
   padding: 20px 0;
   border-top: 1px solid rgba(245, 240, 229, 0.08);

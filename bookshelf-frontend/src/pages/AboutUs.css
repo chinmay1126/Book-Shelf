@@ -37,7 +37,8 @@
 }
 
 .about-hero__inner {
-  max-width: 680px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -81,7 +82,8 @@
 }
 
 .about-stats__inner {
-  max-width: 900px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -120,7 +122,8 @@
 }
 
 .about-values__inner {
-  max-width: 1080px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -187,7 +190,8 @@
 }
 
 .about-team__inner {
-  max-width: 900px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -254,7 +258,8 @@
 }
 
 .about-timeline__inner {
-  max-width: 700px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -331,7 +336,8 @@
 }
 
 .about-cta__inner {
-  max-width: 680px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   background: linear-gradient(145deg, #221e19, #3a3128);

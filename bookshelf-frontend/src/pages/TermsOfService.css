@@ -37,7 +37,8 @@
 }
 
 .tos-hero__inner {
-  max-width: 680px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -96,7 +97,8 @@
 }
 
 .tos-summary__inner {
-  max-width: 1080px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background: var(--paper-dim);
   border: 1px solid var(--line);
@@ -166,7 +168,8 @@
 }
 
 .tos-content__inner {
-  max-width: 960px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 260px 1fr;

@@ -1,9 +1,10 @@
 /* ── Admin Dashboard Page ───────────────────────────────────────────── */
 
 .admin-dashboard {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2rem 2%;
   color: var(--text-main);
 }
 

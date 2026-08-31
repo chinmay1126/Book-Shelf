@@ -1,8 +1,9 @@
 /* ── Page wrapper ─────────────────────────────────────────── */
 .order-history-page {
-  max-width: 860px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 3rem 2rem 5rem;
+  padding: 3rem 2% 5rem;
 }
 
 /* ── Page header ──────────────────────────────────────────── */

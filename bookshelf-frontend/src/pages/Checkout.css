@@ -1,9 +1,10 @@
 /* ─── Container ──────────────────────────────────────────────────────── */
 
 .checkout-container {
-  max-width: 640px;
+  width: 100%;
+  max-width: 100%;
   margin: 48px auto 80px;
-  padding: 0 20px;
+  padding: 0 2%;
 }
 
 /* ─── Header + step indicators ───────────────────────────────────────── */
@@ -356,9 +357,10 @@
  */
 
 .checkout {
-  max-width: 1040px;
+  width: 100%;
+  max-width: 100%;
   margin: 48px auto;
-  padding: 0 20px 80px;
+  padding: 0 2% 80px;
 }
 
 .checkout__title {

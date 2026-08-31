@@ -37,7 +37,8 @@
 }
 
 .privacy-hero__inner {
-  max-width: 600px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -74,7 +75,8 @@
 }
 
 .privacy-content__inner {
-  max-width: 880px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 240px 1fr;

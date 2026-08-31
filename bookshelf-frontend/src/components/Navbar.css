@@ -1,11 +1,11 @@
 /* ── Floating Navbar Wrapper ── */
 .nav-wrapper {
   position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 48px);
-  max-width: 1180px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 2%;
   z-index: 1000;
   pointer-events: none;
 }
