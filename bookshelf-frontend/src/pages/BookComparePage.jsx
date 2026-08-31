@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo, useContext } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { getComparison } from '../services/comparisonService.js';
-import { ComparisonContext } from '../context/ComparisonContext.jsx';
+import { useComparison } from '../hooks/useComparison.js';
 import { formatPrice, formatRating, isInStock } from '../utils/bookFormat.js';
 import './BookComparePage.css';
 
@@ -80,7 +80,7 @@ const COMPARISON_ROWS = [
 
 export default function BookComparePage() {
   const [searchParams] = useSearchParams();
-  const { removeFromCompare, clearCompare } = useContext(ComparisonContext);
+  const { removeFromCompare, clearCompare } = useComparison();
 
   const [books, setBooks] = useState([]);
   const [missingIds, setMissingIds] = useState([]);

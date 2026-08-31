@@ -1,6 +1,17 @@
 import { createContext, useState, useCallback, useEffect } from 'react';
 
-export const ComparisonContext = createContext();
+const defaultContextValue = {
+  compareIds: [],
+  compareCount: 0,
+  maxCompare: 5,
+  isComparing: () => false,
+  toggleCompare: () => {},
+  addToCompare: () => {},
+  removeFromCompare: () => {},
+  clearCompare: () => {},
+};
+
+export const ComparisonContext = createContext(defaultContextValue);
 
 const STORAGE_KEY = 'bookshelf_compare';
 const MAX_COMPARE = 5;

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('../context/AuthContext.jsx', () => ({
@@ -85,12 +85,15 @@ describe('BookClubsPage', () => {
   it('renders the page title', async () => {
     renderPage();
     expect(screen.getByText('📚 Book Clubs')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Sci-Fi Explorers')).toBeInTheDocument();
+    });
   });
 
   it('loads and displays public clubs', async () => {
     renderPage();
     await waitFor(() => {
-      expect(screen.getByText('Fiction Fans')).toBeInTheDocument();
+      expect(screen.getAllByText('Fiction Fans').length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText('Sci-Fi Explorers')).toBeInTheDocument();
     });
   });
@@ -105,19 +108,24 @@ describe('BookClubsPage', () => {
   it('shows the create club button', async () => {
     renderPage();
     expect(screen.getByText('+ Create Club')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Sci-Fi Explorers')).toBeInTheDocument();
+    });
   });
 
   it('opens the create club form when button is clicked', async () => {
     renderPage();
     const btn = screen.getByText('+ Create Club');
-    btn.click();
-    expect(screen.getByText('Create a New Club')).toBeInTheDocument();
+    fireEvent.click(btn);
+    await waitFor(() => {
+      expect(screen.getByText('Create a New Club')).toBeInTheDocument();
+    });
   });
 
   it('displays club member counts', async () => {
     renderPage();
     await waitFor(() => {
-      expect(screen.getByText(/5 members/)).toBeInTheDocument();
+      expect(screen.getAllByText(/5 members/).length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText(/12 members/)).toBeInTheDocument();
     });
   });
@@ -125,13 +133,16 @@ describe('BookClubsPage', () => {
   it('displays current book titles when available', async () => {
     renderPage();
     await waitFor(() => {
-      expect(screen.getByText(/Dune/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Dune/).length).toBeGreaterThanOrEqual(1);
     });
   });
 
   it('shows search input and genre filter', async () => {
     renderPage();
     expect(screen.getByPlaceholderText('Search clubs…')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Sci-Fi Explorers')).toBeInTheDocument();
+    });
   });
 
   it('shows pagination info when there are results', async () => {

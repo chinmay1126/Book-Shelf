@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import WishlistButton from './WishlistButton.jsx';
 import { useWishlist } from '../hooks/useWishlist.js';
 import { useCart } from '../hooks/useCart.js';
-import { ComparisonContext } from '../context/ComparisonContext.jsx';
+import { useComparison } from '../hooks/useComparison.js';
 import { formatPrice, formatRating, isInStock } from '../utils/bookFormat.js';
 import './BookCard.css';
 
@@ -20,7 +20,7 @@ import './BookCard.css';
 export default function BookCard({ book, onAddToCart }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const { addToCart } = useCart();
-  const { isComparing, toggleCompare, compareCount, maxCompare } = useContext(ComparisonContext);
+  const { isComparing, toggleCompare, compareCount, maxCompare } = useComparison();
   const wishlisted = isWishlisted(book.id);
   const comparing = isComparing(book.id);
 

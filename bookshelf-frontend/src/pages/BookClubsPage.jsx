@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import {
   listClubs,
@@ -7,6 +6,7 @@ import {
   createClub,
   joinClub,
 } from '../services/bookClubService.js';
+import BookClubCard from '../components/bookClubs/BookClubCard.jsx';
 import './BookClubsPage.css';
 
 const GENRE_OPTIONS = [
@@ -40,7 +40,7 @@ export default function BookClubsPage() {
   });
   const [creating, setCreating] = useState(false);
 
-  // ── Flash message ─────────────────────────────────────────────────────
+  // ── Toast message ─────────────────────────────────────────────────────
   const flash = useCallback((msg) => {
     setMessage(msg);
     setTimeout(() => setMessage(''), 4000);
@@ -122,7 +122,6 @@ export default function BookClubsPage() {
     loadPublicClubs();
   }
 
-  // ── Render ────────────────────────────────────────────────────────────
   const isMember = (clubId) => myClubs.some((c) => c.id === clubId);
 
   return (
@@ -219,27 +218,11 @@ export default function BookClubsPage() {
           <h2 className="bc-page__section-title">Your Clubs</h2>
           <div className="bc-page__club-grid">
             {myClubs.map((club) => (
-              <Link
+              <BookClubCard
                 key={club.id}
-                to={`/book-clubs/${club.id}`}
-                className="bc-page__club-card bc-page__club-card--mine"
-              >
-                <div className="bc-page__club-card-header">
-                  <h3 className="bc-page__club-name">{club.name}</h3>
-                  {club.genre && (
-                    <span className="bc-page__club-genre">{club.genre}</span>
-                  )}
-                </div>
-                {club.description && (
-                  <p className="bc-page__club-desc">{club.description}</p>
-                )}
-                <div className="bc-page__club-meta">
-                  <span>👥 {club.memberCount} member{club.memberCount !== 1 ? 's' : ''}</span>
-                  {club.currentBookTitle && (
-                    <span>📖 {club.currentBookTitle}</span>
-                  )}
-                </div>
-              </Link>
+                club={club}
+                isMine={true}
+              />
             ))}
           </div>
         </section>
@@ -286,49 +269,18 @@ export default function BookClubsPage() {
           <>
             <div className="bc-page__club-grid">
               {publicClubs.map((club) => (
-                <div key={club.id} className="bc-page__club-card">
-                  <div className="bc-page__club-card-header">
-                    <h3 className="bc-page__club-name">{club.name}</h3>
-                    {club.genre && (
-                      <span className="bc-page__club-genre">{club.genre}</span>
-                    )}
-                  </div>
-                  {club.description && (
-                    <p className="bc-page__club-desc">{club.description}</p>
-                  )}
-                  <div className="bc-page__club-meta">
-                    <span>👥 {club.memberCount} member{club.memberCount !== 1 ? 's' : ''}</span>
-                    {club.currentBookTitle && (
-                      <span>📖 {club.currentBookTitle}</span>
-                    )}
-                    <span>Created by {club.ownerName}</span>
-                  </div>
-                  <div className="bc-page__club-actions">
-                    <Link
-                      to={`/book-clubs/${club.id}`}
-                      className="bc-page__view-btn"
-                    >
-                      View
-                    </Link>
-                    {user && !isMember(club.id) && (
-                      <button
-                        type="button"
-                        className="bc-page__join-btn"
-                        onClick={() => handleJoin(club.id)}
-                      >
-                        Join
-                      </button>
-                    )}
-                    {user && isMember(club.id) && (
-                      <span className="bc-page__member-badge">✓ Member</span>
-                    )}
-                  </div>
-                </div>
+                <BookClubCard
+                  key={club.id}
+                  club={club}
+                  isMember={isMember(club.id)}
+                  user={user}
+                  onJoin={handleJoin}
+                />
               ))}
             </div>
 
-            {/* Pagination */}
-            {pagination.pages > 1 && (
+            {/* Pagination info bar */}
+            {pagination.total > 0 && (
               <div className="bc-page__pagination">
                 <button
                   type="button"
@@ -339,7 +291,7 @@ export default function BookClubsPage() {
                   ← Previous
                 </button>
                 <span className="bc-page__page-info">
-                  Page {currentPage} of {pagination.pages} ({pagination.total} clubs)
+                  Page {currentPage} of {pagination.pages} ({pagination.total} club{pagination.total !== 1 ? 's' : ''})
                 </span>
                 <button
                   type="button"

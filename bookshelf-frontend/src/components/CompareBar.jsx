@@ -1,6 +1,5 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ComparisonContext } from '../context/ComparisonContext.jsx';
+import { useComparison } from '../hooks/useComparison.js';
 import './CompareBar.css';
 
 /**
@@ -12,7 +11,7 @@ import './CompareBar.css';
  */
 export default function CompareBar() {
   const { compareIds, compareCount, maxCompare, clearCompare } =
-    useContext(ComparisonContext);
+    useComparison();
 
   if (compareCount === 0) return null;
 

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { vi } from 'vitest';
 import { ComparisonContext } from '../context/ComparisonContext.jsx';
 import CompareBar from './CompareBar.jsx';
 
@@ -9,10 +10,10 @@ function renderWithCtx(overrides = {}) {
     compareCount: 0,
     maxCompare: 5,
     isComparing: () => false,
-    toggleCompare: jest.fn(),
-    addToCompare: jest.fn(),
-    removeFromCompare: jest.fn(),
-    clearCompare: jest.fn(),
+    toggleCompare: vi.fn(),
+    addToCompare: vi.fn(),
+    removeFromCompare: vi.fn(),
+    clearCompare: vi.fn(),
   };
   const ctx = { ...defaults, ...overrides };
   return render(
@@ -72,7 +73,7 @@ describe('CompareBar', () => {
   });
 
   it('calls clearCompare when clear button is clicked', () => {
-    const clearCompare = jest.fn();
+    const clearCompare = vi.fn();
     renderWithCtx({
       compareIds: ['b1', 'b2'],
       compareCount: 2,

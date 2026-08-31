@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 vi.mock('../context/AuthContext.jsx', () => ({
@@ -132,14 +132,14 @@ describe('BookClubDetailPage', () => {
   it('displays the current book', async () => {
     renderDetail();
     await waitFor(() => {
-      expect(screen.getByText(/Dune/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Dune/).length).toBeGreaterThanOrEqual(1);
     });
   });
 
   it('shows member count', async () => {
     renderDetail();
     await waitFor(() => {
-      expect(screen.getByText(/3 members/)).toBeInTheDocument();
+      expect(screen.getAllByText(/3 members/).length).toBeGreaterThanOrEqual(1);
     });
   });
 
@@ -154,7 +154,7 @@ describe('BookClubDetailPage', () => {
   it('shows message author names', async () => {
     renderDetail();
     await waitFor(() => {
-      expect(screen.getByText('Alice')).toBeInTheDocument();
+      expect(screen.getAllByText(/Alice/).length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText('Bob')).toBeInTheDocument();
     });
   });
@@ -171,6 +171,10 @@ describe('BookClubDetailPage', () => {
   it('shows stats summary', async () => {
     renderDetail();
     await waitFor(() => {
+      expect(screen.getByText(/Progress/)).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByText(/Progress/));
+    await waitFor(() => {
       expect(screen.getByText('63%')).toBeInTheDocument();
     });
   });
@@ -178,7 +182,12 @@ describe('BookClubDetailPage', () => {
   it('shows reading progress presets', async () => {
     renderDetail();
     await waitFor(() => {
-      expect(screen.getByText('75%')).toBeInTheDocument();
+      expect(screen.getByText(/Progress/)).toBeInTheDocument();
+    });
+    const progressTab = screen.getByText(/Progress/);
+    fireEvent.click(progressTab);
+    await waitFor(() => {
+      expect(screen.getAllByText('75%').length).toBeGreaterThanOrEqual(1);
     });
   });
 
