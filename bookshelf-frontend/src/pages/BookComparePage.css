@@ -4,6 +4,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
+  color: var(--text-main);
 }
 
 .bc-page--loading,
@@ -20,9 +21,9 @@
 .bc-page__spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #6366f1;
-  border-radius: 50%;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--brand-primary);
+  border-radius: var(--radius-full);
   animation: bcp-spin 0.7s linear infinite;
 }
 
@@ -44,7 +45,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .bc-page__header-actions {
@@ -55,37 +56,38 @@
 .bc-page__add-more-btn,
 .bc-page__clear-btn {
   padding: 0.4rem 0.85rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: all var(--transition-fast);
 }
 
 .bc-page__add-more-btn {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  color: #374151;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
 }
 
 .bc-page__add-more-btn:hover {
-  background: #e5e7eb;
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
 }
 
 .bc-page__clear-btn {
   background: none;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
 }
 
 .bc-page__clear-btn:hover {
-  background: #fef2f2;
+  background: var(--color-danger-bg);
 }
 
 .bc-page__back-link {
   font-size: 0.85rem;
-  color: #6366f1;
+  color: var(--brand-primary);
   text-decoration: none;
 }
 
@@ -98,27 +100,28 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .bc-page__meta-item {
   font-size: 0.82rem;
-  color: #6b7280;
+  color: var(--text-subtle);
 }
 
 /* Missing */
 .bc-page__missing {
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-radius: 8px;
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-sm);
   padding: 0.6rem 1rem;
   margin-bottom: 1rem;
   font-size: 0.85rem;
-  color: #92400e;
+  color: var(--color-warning);
 }
 
 /* Empty */
@@ -135,35 +138,38 @@
 
 .bc-page__empty h2 {
   margin: 0 0 0.5rem;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .bc-page__empty p {
   margin: 0 0 1.25rem;
-  color: #6b7280;
+  color: var(--text-subtle);
 }
 
 .bc-page__browse-btn {
   display: inline-block;
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.6rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
+  transition: background-color var(--transition-fast);
 }
 
 .bc-page__browse-btn:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 /* Table */
 .bc-page__table-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: border-color var(--transition-base), background-color var(--transition-base);
 }
 
 .bc-page__table {
@@ -176,15 +182,15 @@
 .bc-page__table td {
   padding: 0.65rem 0.85rem;
   text-align: left;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--border-subtle);
   vertical-align: top;
 }
 
 .bc-page__label-col {
   width: 120px;
   font-weight: 600;
-  color: #6b7280;
-  background: #f9fafb;
+  color: var(--text-subtle);
+  background: var(--bg-surface);
   white-space: nowrap;
 }
 
@@ -200,103 +206,59 @@
 
 .bc-page__book-title-link {
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
   text-decoration: none;
   font-size: 0.95rem;
+  transition: color var(--transition-fast);
 }
 
 .bc-page__book-title-link:hover {
-  color: #6366f1;
+  color: var(--brand-primary);
 }
 
 .bc-page__book-author {
   font-size: 0.78rem;
-  color: #9ca3af;
+  color: var(--text-tertiary);
 }
 
 .bc-page__remove-btn {
   background: none;
   border: none;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   font-size: 0.8rem;
   cursor: pointer;
   padding: 0;
   align-self: flex-start;
+  transition: color var(--transition-fast);
 }
 
 .bc-page__remove-btn:hover {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 /* Cells */
 .bc-page__cell {
-  color: #374151;
+  color: var(--text-main);
 }
 
 .bc-page__cell--best {
-  background: #f0fdf4;
+  background: var(--color-success-bg);
   font-weight: 600;
-  color: #065f46;
+  color: var(--color-success);
 }
 
 .bc-page__cell--description {
   font-size: 0.82rem;
   line-height: 1.5;
-  color: #6b7280;
+  color: var(--text-subtle);
   max-width: 250px;
 }
 
 /* Row striping */
 .bc-page__table tbody tr:nth-child(even) td {
-  background: #fafbfc;
+  background: var(--bg-surface);
 }
 
 .bc-page__table tbody tr:nth-child(even) .bc-page__cell--best {
-  background: #ecfdf5;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .bc-page__title { color: #f9fafb; }
-
-  .bc-page__meta {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .bc-page__meta-item { color: #9ca3af; }
-
-  .bc-page__table-wrapper {
-    border-color: #374151;
-  }
-
-  .bc-page__table th,
-  .bc-page__table td {
-    border-bottom-color: #374151;
-  }
-
-  .bc-page__label-col {
-    background: #1f2937;
-    color: #9ca3af;
-  }
-
-  .bc-page__book-title-link { color: #f3f4f6; }
-  .bc-page__cell { color: #d1d5db; }
-  .bc-page__cell--best { background: #064e3b; color: #a7f3d0; }
-  .bc-page__cell--description { color: #9ca3af; }
-
-  .bc-page__table tbody tr:nth-child(even) td { background: #1a2332; }
-  .bc-page__table tbody tr:nth-child(even) .bc-page__cell--best { background: #064e3b; }
-
-  .bc-page__add-more-btn {
-    background: #374151;
-    border-color: #4b5563;
-    color: #d1d5db;
-  }
-
-  .bc-page__missing {
-    background: #451a03;
-    border-color: #92400e;
-    color: #fde68a;
-  }
+  background: var(--color-success-bg);
 }

@@ -1,23 +1,25 @@
 /* ── Review Form ─────────────────────────────────────────────────────────── */
 
 .review-form {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .review-form__heading {
   margin: 0 0 0.25rem;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .review-form__book-title {
   margin: 0 0 1rem;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-subtle);
 }
 
 /* Field */
@@ -29,7 +31,7 @@
   display: block;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #374151;
+  color: var(--text-main);
   margin-bottom: 0.4rem;
 }
 
@@ -37,20 +39,20 @@
 .review-form__input {
   width: 100%;
   padding: 0.6rem 0.85rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  color: #111827;
-  background: #f9fafb;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  color: var(--text-main);
+  background: var(--bg-input);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   box-sizing: border-box;
 }
 
 .review-form__input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-  background: #fff;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--leather-light);
+  background: var(--bg-card);
 }
 
 .review-form__input:disabled {
@@ -61,24 +63,24 @@
 .review-form__textarea {
   width: 100%;
   padding: 0.6rem 0.85rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  color: #111827;
-  background: #f9fafb;
+  color: var(--text-main);
+  background: var(--bg-input);
   resize: vertical;
   min-height: 120px;
   font-family: inherit;
   line-height: 1.5;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   box-sizing: border-box;
 }
 
 .review-form__textarea:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-  background: #fff;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--leather-light);
+  background: var(--bg-card);
 }
 
 .review-form__textarea:disabled {
@@ -90,7 +92,7 @@
   display: block;
   text-align: right;
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   margin-top: 0.2rem;
 }
 
@@ -98,18 +100,18 @@
 .review-form__error {
   display: block;
   font-size: 0.8rem;
-  color: #ef4444;
+  color: var(--color-danger);
   margin-top: 0.3rem;
 }
 
 .review-form__global-error {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   font-size: 0.85rem;
-  color: #991b1b;
+  color: var(--color-danger);
 }
 
 /* Actions */
@@ -122,78 +124,40 @@
 
 .review-form__btn {
   padding: 0.55rem 1.25rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--transition-fast);
   border: 1px solid transparent;
 }
 
 .review-form__btn--cancel {
-  background: #f3f4f6;
-  color: #6b7280;
-  border-color: #d1d5db;
+  background: var(--bg-surface);
+  color: var(--text-subtle);
+  border-color: var(--border-subtle);
 }
 
 .review-form__btn--cancel:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--bg-card-hover);
+  color: var(--text-main);
 }
 
 .review-form__btn--submit {
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
 }
 
 .review-form__btn--submit:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 .review-form__btn--submit:disabled {
-  background: #a5b4fc;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .review-form__btn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .review-form {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .review-form__heading { color: #f9fafb; }
-  .review-form__book-title { color: #9ca3af; }
-  .review-form__label { color: #d1d5db; }
-
-  .review-form__input,
-  .review-form__textarea {
-    background: #111827;
-    border-color: #4b5563;
-    color: #f3f4f6;
-  }
-
-  .review-form__input:focus,
-  .review-form__textarea:focus {
-    background: #1f2937;
-  }
-
-  .review-form__char-count { color: #6b7280; }
-
-  .review-form__btn--cancel {
-    background: #374151;
-    color: #d1d5db;
-    border-color: #4b5563;
-  }
-
-  .review-form__global-error {
-    background: #450a0a;
-    border-color: #7f1d1d;
-    color: #fca5a5;
-  }
 }

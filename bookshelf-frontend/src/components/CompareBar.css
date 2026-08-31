@@ -6,10 +6,14 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #111827;
-  color: #f9fafb;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-  animation: cb-slide-up 0.25s ease;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-main);
+  box-shadow: var(--shadow-lg);
+  animation: cb-slide-up var(--transition-base);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 @keyframes cb-slide-up {
@@ -40,7 +44,7 @@
 }
 
 .compare-bar__hint {
-  color: #9ca3af;
+  color: var(--text-subtle);
   font-size: 0.8rem;
   margin-left: 0.25rem;
 }
@@ -52,43 +56,36 @@
 }
 
 .compare-bar__clear-btn {
-  background: none;
-  border: 1px solid #4b5563;
-  border-radius: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 0.4rem 0.85rem;
-  color: #d1d5db;
+  color: var(--text-main);
   font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--transition-fast);
 }
 
 .compare-bar__clear-btn:hover {
-  background: #374151;
-  color: #f9fafb;
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
 }
 
 .compare-bar__compare-btn {
   display: inline-flex;
   align-items: center;
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.45rem 1.1rem;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .compare-bar__compare-btn:hover {
-  background: #4f46e5;
-}
-
-/* Dark mode already dark — light mode override */
-@media (prefers-color-scheme: light) {
-  .compare-bar {
-    background: #1f2937;
-  }
+  background: var(--brand-primary-hover);
 }

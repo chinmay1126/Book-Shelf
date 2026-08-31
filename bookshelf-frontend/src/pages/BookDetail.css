@@ -12,7 +12,6 @@
   width: 100%;
 }
 
-
 .book-detail-content {
   display: flex;
   flex-direction: column;
@@ -29,10 +28,11 @@
 .book-detail-image-container {
   flex: 1;
   max-width: 400px;
-  background: var(--paper-dim);
+  background: var(--bg-surface);
   border-radius: var(--radius-card);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .book-detail-image {
@@ -53,45 +53,45 @@
 .book-detail-title {
   font-family: var(--font-display);
   font-size: 32px;
-  color: var(--ink);
+  color: var(--text-main);
   margin: 0;
 }
 
 .book-detail-author {
   font-size: 18px;
-  color: var(--ink-soft);
+  color: var(--text-subtle);
   margin: 0;
 }
 
 .book-detail-price {
   font-size: 24px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--text-main);
   margin: 0;
 }
 
 .book-detail-description {
   font-size: 16px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .btn-add-to-cart {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-primary);
+  color: #ffffff;
   border: none;
   padding: 14px 24px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: background-color var(--transition-fast);
   max-width: 200px;
   margin-top: 16px;
 }
 
 .btn-add-to-cart:hover {
-  opacity: 0.9;
+  background: var(--brand-primary-hover);
 }
 
 .not-found {
@@ -104,28 +104,31 @@
 }
 
 .btn-return {
-  color: var(--ink);
+  color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--border-strong);
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .btn-return:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
 }
+
 .book-review-success {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-left: 4px solid #16a34a;
-  border-radius: 8px;
-  color: #15803d;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-left: 4px solid var(--color-success);
+  border-radius: var(--radius-sm);
+  color: var(--color-success);
   font-size: 0.9rem;
   font-weight: 500;
   margin: 0;
@@ -142,27 +145,20 @@
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
- main
-
-/* ─── Stock and load-failure states (#317) ──────────────────────────────
- *
- * The page had neither. It read a hardcoded array, so there was no request
- * that could fail and no `inventory` field to report.
- */
 
 .book-detail-stock {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(31, 75, 67, 0.12);
+  border-radius: var(--radius-full);
+  background: var(--pine-light);
   color: var(--pine);
 }
 
 .book-detail-stock--out {
-  background: rgba(192, 57, 43, 0.12);
-  color: #c0392b;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 
 .book-detail-add-btn:disabled {
@@ -171,7 +167,7 @@
 }
 
 .book-detail-error-message {
-  color: var(--ink-soft);
+  color: var(--text-subtle);
   margin: 12px 0 20px;
 }
 
@@ -179,15 +175,16 @@
   display: inline-block;
   margin-bottom: 16px;
   padding: 10px 18px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--leather);
-  color: #fff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary);
+  color: #ffffff;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
 .book-detail-retry:hover {
-  background: var(--leather-deep);
+  background: var(--brand-primary-hover);
 }

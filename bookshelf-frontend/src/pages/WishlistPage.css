@@ -1,7 +1,9 @@
 .wishlist-page {
   min-height: 70vh;
   padding: 4rem 1.5rem;
-  background-color: var(--surface-1);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 .wishlist-page__inner {
@@ -18,62 +20,57 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .wishlist-page__subtitle {
-  color: var(--ink-soft);
+  color: var(--text-subtle);
   font-size: 1.1rem;
 }
 
 .wishlist-page__empty {
   text-align: center;
   padding: 4rem 2rem;
-  background: var(--paper);
+  background: var(--bg-card);
   border-radius: var(--radius-card);
-  border: 1px dashed var(--line);
-  color: var(--ink-soft);
+  border: 1px dashed var(--border-subtle);
+  color: var(--text-subtle);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .wishlist-page__browse-btn {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-primary);
+  color: #ffffff;
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .wishlist-page__browse-btn:hover {
-  opacity: 0.9;
+  background: var(--brand-primary-hover);
 }
 
-/*
- * States this page could not have before.
- *
- * It filtered a hardcoded local array, which cannot fail and cannot 404, so
- * there was nothing to report. Reading the real catalogue means a request
- * that breaks, and ids the catalogue no longer has. See #328.
- */
 .wishlist-page__error {
   padding: 2rem;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(220, 38, 38, 0.25);
-  border-radius: 12px;
-  background: rgba(254, 226, 226, 0.35);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
 }
 
 .wishlist-page__error h2 {
   margin: 0 0 0.5rem;
   font-size: 1.15rem;
-  color: #b3261e;
+  color: var(--color-danger);
 }
 
 .wishlist-page__error p {
   margin: 0;
+  color: var(--text-main);
 }
 
 .wishlist-page__notice {
@@ -84,9 +81,9 @@
   flex-wrap: wrap;
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
 }
 
 .wishlist-page__notice p {
@@ -94,21 +91,22 @@
 }
 
 .wishlist-page__notice--warning {
-  border-color: rgba(180, 83, 9, 0.25);
-  background: rgba(254, 243, 199, 0.4);
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
 }
 
 .wishlist-page__notice-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid var(--leather, #8b5a2b);
-  border-radius: 8px;
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--leather, #8b5a2b);
+  color: var(--brand-primary);
   font-weight: 600;
   cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .wishlist-page__notice-btn:hover {
-  background: var(--leather, #8b5a2b);
-  color: #fff;
+  background: var(--brand-primary);
+  color: #ffffff;
 }

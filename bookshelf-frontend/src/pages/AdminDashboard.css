@@ -4,6 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+  color: var(--text-main);
 }
 
 .admin-dashboard__header {
@@ -14,24 +15,24 @@
   font-size: 1.75rem;
   font-weight: 700;
   margin: 0;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
 }
 
 .admin-dashboard__subtitle {
   margin: 0.3rem 0 0;
   font-size: 0.9rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
 }
 
 /* Error banner */
 
 .admin-dashboard__error {
-  background: var(--color-error-light, #fef2f2);
-  border: 1px solid var(--color-error-border, #fecaca);
-  border-radius: 10px;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
   padding: 0.75rem 1rem;
   margin-bottom: 1.5rem;
-  color: var(--color-error, #dc2626);
+  color: var(--color-danger);
   font-size: 0.88rem;
 }
 
@@ -60,7 +61,7 @@
 }
 
 .admin-dashboard__col {
-  min-width: 0; /* prevent overflow from long table cells */
+  min-width: 0;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
@@ -78,15 +79,5 @@
 
   .admin-dashboard__kpis {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ── Dark mode ──────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  .admin-dashboard__error {
-    background: var(--color-error-light-dark, #450a0a);
-    border-color: var(--color-error-border-dark, #7f1d1d);
-    color: var(--color-error-dark, #fecaca);
   }
 }

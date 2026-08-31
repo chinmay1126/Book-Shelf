@@ -1,27 +1,14 @@
 /* ── Rating Breakdown ──────────────────────────────────────────────── */
 
-/*
- * This stylesheet existed but nothing imported it — not the component, not
- * ReviewSummary which renders it. So the track and the fill had no height and
- * no background and the chart rendered as five bare lines of text. The
- * component imports it now.
- */
 .rating-breakdown {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  /* A <ul> now, for the row semantics — so its list styling has to go. */
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/*
- * The one sentence per row that a screen reader reads: "5 stars: 10 reviews,
- * 50%". Off-screen rather than display:none, which would take it out of the
- * accessibility tree — the one thing it is here for. Same technique as
- * .pagination__status.
- */
 .rating-breakdown__sr-only {
   position: absolute;
   width: 1px;
@@ -45,7 +32,7 @@
   width: 2.2rem;
   text-align: right;
   font-weight: 500;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
   white-space: nowrap;
 }
 
@@ -53,21 +40,21 @@
   display: block;
   flex: 1;
   height: 10px;
-  background: var(--color-progress-track, #e5e7eb);
-  border-radius: 999px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-full);
   overflow: hidden;
+  transition: background-color var(--transition-base);
 }
 
 .rating-breakdown__fill {
   display: block;
   height: 100%;
   min-width: 0;
-  background: var(--color-star-filled, #f59e0b);
-  border-radius: 999px;
-  transition: width 0.35s ease;
+  background: var(--gold);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
 }
 
-/* A bar that animates on load is motion the reader did not ask for. */
 @media (prefers-reduced-motion: reduce) {
   .rating-breakdown__fill {
     transition: none;
@@ -77,22 +64,10 @@
 .rating-breakdown__count {
   min-width: 3rem;
   font-size: 0.8rem;
-  color: var(--color-text-secondary, #374151);
+  color: var(--text-subtle);
   white-space: nowrap;
 }
 
 .rating-breakdown__pct {
-  color: var(--color-text-muted, #9ca3af);
-}
-
-/* ── Dark mode ──────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  .rating-breakdown__track {
-    background: var(--color-progress-track-dark, #374151);
-  }
-
-  .rating-breakdown__fill {
-    background: var(--color-star-filled-dark, #fbbf24);
-  }
+  color: var(--text-tertiary);
 }

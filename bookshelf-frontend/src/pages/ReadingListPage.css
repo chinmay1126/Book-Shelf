@@ -4,6 +4,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
+  color: var(--text-main);
 }
 
 .rl-page--loading,
@@ -20,8 +21,8 @@
 .rl-page__spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #6366f1;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--brand-primary);
   border-radius: 50%;
   animation: rlp-spin 0.7s linear infinite;
 }
@@ -44,14 +45,15 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .rl-page__catalog-link {
   font-size: 0.85rem;
-  color: #6366f1;
+  color: var(--brand-primary);
   text-decoration: none;
   font-weight: 500;
+  transition: color var(--transition-fast);
 }
 
 .rl-page__catalog-link:hover {
@@ -62,11 +64,12 @@
 .rl-page__stats {
   display: flex;
   gap: 1rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .rl-page__stat {
@@ -80,12 +83,12 @@
 .rl-page__stat-value {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .rl-page__stat-label {
   font-size: 0.72rem;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -94,23 +97,24 @@
 .rl-page__tabs {
   display: flex;
   gap: 0.25rem;
-  background: #f3f4f6;
-  border-radius: 10px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
   padding: 0.2rem;
   margin-bottom: 1.5rem;
+  transition: background-color var(--transition-base);
 }
 
 .rl-page__tab {
   flex: 1;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.5rem 0.75rem;
   font-size: 0.82rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-subtle);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,29 +122,29 @@
 }
 
 .rl-page__tab:hover {
-  color: #374151;
+  color: var(--text-main);
 }
 
 .rl-page__tab--active {
-  background: #ffffff;
-  color: #111827;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
   font-weight: 600;
 }
 
 .rl-page__tab-count {
-  background: #e5e7eb;
-  color: #6b7280;
+  background: var(--bg-surface-elevated);
+  color: var(--text-subtle);
   font-size: 0.7rem;
   font-weight: 600;
   padding: 0.1rem 0.4rem;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   min-width: 1.2rem;
   text-align: center;
 }
 
 .rl-page__tab--active .rl-page__tab-count {
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
 }
 
@@ -158,85 +162,61 @@
 
 .rl-page__empty h2 {
   margin: 0 0 0.5rem;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .rl-page__empty p {
   margin: 0 0 1.25rem;
-  color: #6b7280;
+  color: var(--text-subtle);
   font-size: 0.95rem;
 }
 
 .rl-page__browse-btn {
   display: inline-block;
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.6rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .rl-page__browse-btn:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 /* Error */
 .rl-page--error h2 {
   margin: 0;
-  color: #111827;
+  color: var(--text-main);
 }
 
 .rl-page--error p {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-subtle);
 }
 
 .rl-page__retry-btn {
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.5rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
 .rl-page__retry-btn:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 .rl-page__back-link {
   font-size: 0.85rem;
-  color: #6366f1;
+  color: var(--brand-primary);
   text-decoration: none;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .rl-page__title { color: #f9fafb; }
-
-  .rl-page__stats {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .rl-page__stat-value { color: #f3f4f6; }
-  .rl-page__stat-label { color: #6b7280; }
-
-  .rl-page__tabs { background: #1f2937; }
-  .rl-page__tab { color: #9ca3af; }
-  .rl-page__tab--active {
-    background: #374151;
-    color: #f9fafb;
-  }
-  .rl-page__tab-count { background: #374151; color: #9ca3af; }
-  .rl-page__tab--active .rl-page__tab-count { background: #6366f1; }
-
-  .rl-page__empty h2 { color: #f9fafb; }
-  .rl-page__empty p { color: #9ca3af; }
 }

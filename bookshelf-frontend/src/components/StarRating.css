@@ -11,9 +11,9 @@
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: #d1d5db;
+  color: var(--border-strong);
   padding: 0.1rem;
-  transition: color 0.15s ease, transform 0.15s ease;
+  transition: color var(--transition-fast), transform var(--transition-fast);
   line-height: 1;
 }
 
@@ -22,19 +22,19 @@
 }
 
 .star-rating__star:focus-visible {
-  outline: 2px solid #6366f1;
+  outline: 2px solid var(--border-focus);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 
 .star-rating__star--filled {
-  color: #f59e0b;
+  color: var(--gold);
 }
 
 .star-rating__label {
   margin-left: 0.5rem;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--text-subtle);
   font-weight: 500;
 }
 

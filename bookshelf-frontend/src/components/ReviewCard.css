@@ -1,16 +1,17 @@
 /* ── Review Card ────────────────────────────────────────────────────── */
 
 .review-card {
-  background: var(--color-surface, #fff);
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .review-card:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
 }
 
 /* Header: stars + date */
@@ -29,17 +30,17 @@
 
 .review-card__star {
   font-size: 1.15rem;
-  color: var(--color-star-empty, #d1d5db);
+  color: var(--border-strong);
   line-height: 1;
 }
 
 .review-card__star--filled {
-  color: var(--color-star-filled, #f59e0b);
+  color: var(--gold);
 }
 
 .review-card__date {
   font-size: 0.8rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-tertiary);
 }
 
 /* Title + body */
@@ -48,14 +49,14 @@
   margin: 0 0 0.4rem;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
 }
 
 .review-card__body {
   margin: 0 0 0.75rem;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: var(--color-text-secondary, #374151);
+  color: var(--text-subtle);
   white-space: pre-wrap;
 }
 
@@ -67,12 +68,12 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   font-size: 0.82rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-tertiary);
 }
 
 .review-card__author {
   font-weight: 500;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
 }
 
 .review-card__badge {
@@ -80,32 +81,33 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.15rem 0.55rem;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 500;
 }
 
 .review-card__badge--verified {
-  background: var(--color-badge-verified-bg, #ecfdf5);
-  color: var(--color-badge-verified-text, #065f46);
-  border: 1px solid var(--color-badge-verified-border, #a7f3d0);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
 }
 
 .review-card__helpful {
   margin-left: auto;
-  background: none;
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 0.25rem 0.65rem;
   font-size: 0.8rem;
   cursor: pointer;
-  color: var(--color-text-secondary, #374151);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  color: var(--text-subtle);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .review-card__helpful:hover:not(:disabled) {
-  background: var(--color-surface-hover, #f3f4f6);
-  border-color: var(--color-primary, #6366f1);
+  background: var(--bg-card-hover);
+  border-color: var(--border-focus);
+  color: var(--text-main);
 }
 
 .review-card__helpful:disabled {
@@ -114,30 +116,7 @@
 }
 
 .review-card__helpful--active {
-  background: var(--color-primary-light, #eef2ff);
-  border-color: var(--color-primary, #6366f1);
-  color: var(--color-primary, #6366f1);
-}
-
-/* ── Dark mode ──────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  .review-card {
-    background: var(--color-surface-dark, #1f2937);
-    border-color: var(--color-border-dark, #374151);
-  }
-
-  .review-card__star {
-    color: var(--color-star-empty-dark, #4b5563);
-  }
-
-  .review-card__star--filled {
-    color: var(--color-star-filled-dark, #fbbf24);
-  }
-
-  .review-card__badge--verified {
-    background: var(--color-badge-verified-bg-dark, #064e3b);
-    color: var(--color-badge-verified-text-dark, #a7f3d0);
-    border-color: var(--color-badge-verified-border-dark, #065f46);
-  }
+  background: var(--leather-light);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
 }

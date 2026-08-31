@@ -5,15 +5,17 @@
   margin: 0 auto;
   padding: 2rem 1.5rem;
   min-height: 80vh;
+  color: var(--text-main);
 }
 
 /* ── Toast ───────────────────────────────────────────────────────────────── */
 
 .bcd-page__toast {
-  background: #10b981;
-  color: #fff;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
   padding: 0.75rem 1.25rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   margin-bottom: 1.5rem;
   font-weight: 500;
   animation: bcdToastIn 0.3s ease;
@@ -38,10 +40,11 @@
 }
 
 .bcd-page__back-link {
-  color: #6366f1;
+  color: var(--brand-primary);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
+  transition: color var(--transition-fast);
 }
 
 .bcd-page__back-link:hover {
@@ -56,33 +59,34 @@
 .bcd-page__settings-btn,
 .bcd-page__danger-btn {
   padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 6px;
-  background: var(--bg-primary, #fff);
-  color: var(--text-primary, #1a1a2e);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .bcd-page__settings-btn:hover {
-  background: #f3f4f6;
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
 }
 
 .bcd-page__danger-btn {
-  border-color: #fca5a5;
-  color: #dc2626;
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
 }
 
 .bcd-page__danger-btn:hover {
-  background: #fef2f2;
+  background: var(--color-danger-bg);
 }
 
 .bcd-page__title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 0.5rem;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__header-meta {
@@ -90,22 +94,22 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.875rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
   margin-bottom: 0.5rem;
 }
 
 .bcd-page__genre-tag {
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  background: #ede9fe;
-  color: #6d28d9;
+  border-radius: var(--radius-full);
+  background: var(--leather-light);
+  color: var(--brand-primary);
   font-weight: 500;
 }
 
 .bcd-page__description {
   font-size: 0.95rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
   margin: 0;
   line-height: 1.6;
 }
@@ -113,18 +117,19 @@
 /* ── Settings Panel ──────────────────────────────────────────────────────── */
 
 .bcd-page__settings-panel {
-  background: var(--bg-secondary, #f9fafb);
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1.25rem;
   margin-bottom: 1.5rem;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .bcd-page__section-title {
   font-size: 1.15rem;
   font-weight: 600;
   margin: 0 0 0.75rem;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__settings-form {
@@ -146,42 +151,42 @@
 .bcd-page__field label {
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
 }
 
 .bcd-page__field input,
 .bcd-page__field textarea {
   padding: 0.45rem 0.65rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  background: var(--bg-primary, #fff);
-  color: var(--text-primary, #1a1a2e);
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: border-color var(--transition-fast);
 }
 
 .bcd-page__field input:focus,
 .bcd-page__field textarea:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+  border-color: var(--border-focus);
 }
 
 .bcd-page__save-btn {
   grid-column: 1 / -1;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
-  background: #6366f1;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary);
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast);
   justify-self: start;
 }
 
 .bcd-page__save-btn:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 /* ── Stats Banner ────────────────────────────────────────────────────────── */
@@ -189,12 +194,13 @@
 .bcd-page__stats-banner {
   display: flex;
   gap: 1.25rem;
-  background: var(--bg-secondary, #f9fafb);
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1.25rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .bcd-page__current-book {
@@ -206,12 +212,12 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0.25rem 0;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__no-book {
   font-size: 0.9rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-tertiary);
   margin: 0.25rem 0;
   font-style: italic;
 }
@@ -225,29 +231,29 @@
   display: block;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #6366f1;
+  color: var(--brand-primary);
 }
 
 .bcd-page__stat-label {
   display: block;
   font-size: 0.75rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-subtle);
   margin-top: 0.15rem;
 }
 
 .bcd-page__small-btn {
   padding: 0.25rem 0.6rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 4px;
-  background: var(--bg-primary, #fff);
-  color: var(--text-primary, #1a1a2e);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  color: var(--text-main);
   font-size: 0.8rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .bcd-page__small-btn:hover {
-  background: #f3f4f6;
+  background: var(--bg-card-hover);
 }
 
 /* ── My Progress ─────────────────────────────────────────────────────────── */
@@ -256,9 +262,9 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: var(--bg-secondary, #f9fafb);
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 0.85rem 1rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
@@ -267,28 +273,28 @@
 .bcd-page__progress-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__progress-bar-track {
   flex: 1;
   min-width: 120px;
   height: 8px;
-  background: var(--border-color, #e5e7eb);
-  border-radius: 999px;
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .bcd-page__progress-bar-fill {
   height: 100%;
-  border-radius: 999px;
-  transition: width 0.3s ease;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
 }
 
 .bcd-page__progress-value {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
   min-width: 36px;
 }
 
@@ -299,24 +305,24 @@
 
 .bcd-page__preset-btn {
   padding: 0.2rem 0.55rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 4px;
-  background: var(--bg-primary, #fff);
-  color: var(--text-primary, #1a1a2e);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  color: var(--text-main);
   font-size: 0.8rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
 }
 
 .bcd-page__preset-btn:hover {
-  border-color: #6366f1;
-  color: #6366f1;
+  border-color: var(--border-focus);
+  color: var(--brand-primary);
 }
 
 .bcd-page__preset-btn--active {
-  background: #6366f1;
-  border-color: #6366f1;
-  color: #fff;
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #ffffff;
 }
 
 /* ── Tabs ────────────────────────────────────────────────────────────────── */
@@ -324,7 +330,7 @@
 .bcd-page__tabs {
   display: flex;
   gap: 0;
-  border-bottom: 2px solid var(--border-color, #e5e7eb);
+  border-bottom: 2px solid var(--border-subtle);
   margin-bottom: 1.5rem;
   overflow-x: auto;
 }
@@ -335,38 +341,38 @@
   background: none;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
   cursor: pointer;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
   white-space: nowrap;
 }
 
 .bcd-page__tab:hover {
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__tab--active {
-  color: #6366f1;
-  border-bottom-color: #6366f1;
+  color: var(--brand-primary);
+  border-bottom-color: var(--brand-primary);
 }
 
 .bcd-page__join-tab-btn {
   margin-left: auto;
   padding: 0.45rem 1rem;
   border: none;
-  border-radius: 6px;
-  background: #6366f1;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary);
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .bcd-page__join-tab-btn:hover {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 /* ── Discussion ──────────────────────────────────────────────────────────── */
@@ -374,31 +380,31 @@
 .bcd-page__messages {
   max-height: 500px;
   overflow-y: auto;
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1rem;
   margin-bottom: 1rem;
-  background: var(--bg-secondary, #f9fafb);
+  background: var(--bg-surface);
 }
 
 .bcd-page__empty-messages {
   text-align: center;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-tertiary);
   padding: 2rem 0;
   font-style: italic;
 }
 
 .bcd-page__message {
   padding: 0.65rem 0.85rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   margin-bottom: 0.6rem;
-  background: var(--bg-primary, #fff);
-  border: 1px solid var(--border-color, #f3f4f6);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
 }
 
 .bcd-page__message--mine {
-  background: rgba(99, 102, 241, 0.06);
-  border-color: rgba(99, 102, 241, 0.15);
+  background: var(--leather-light);
+  border-color: var(--brand-primary);
 }
 
 .bcd-page__message-header {
@@ -411,36 +417,35 @@
 .bcd-page__message-author {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__message-time {
   font-size: 0.7rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-tertiary);
 }
 
 .bcd-page__msg-delete {
   margin-left: auto;
   background: none;
   border: none;
-  color: var(--text-secondary, #d1d5db);
+  color: var(--text-tertiary);
   font-size: 0.75rem;
   cursor: pointer;
   padding: 0.1rem 0.3rem;
   border-radius: 3px;
-  transition: color 0.2s, background 0.2s;
+  transition: color var(--transition-fast);
 }
 
 .bcd-page__msg-delete:hover {
-  color: #dc2626;
-  background: #fef2f2;
+  color: var(--color-danger);
 }
 
 .bcd-page__message-content {
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
   word-break: break-word;
 }
 
@@ -450,8 +455,8 @@
   font-size: 0.75rem;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .bcd-page__message-form {
@@ -462,33 +467,33 @@
 .bcd-page__message-input {
   flex: 1;
   padding: 0.55rem 0.75rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  background: var(--bg-primary, #fff);
-  color: var(--text-primary, #1a1a2e);
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: border-color var(--transition-fast);
 }
 
 .bcd-page__message-input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+  border-color: var(--border-focus);
 }
 
 .bcd-page__send-btn {
   padding: 0.55rem 1rem;
   border: none;
-  border-radius: 8px;
-  background: #6366f1;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary);
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .bcd-page__send-btn:hover:not(:disabled) {
-  background: #4f46e5;
+  background: var(--brand-primary-hover);
 }
 
 .bcd-page__send-btn:disabled {
@@ -509,9 +514,9 @@
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 8px;
-  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
   flex-wrap: wrap;
 }
 
@@ -526,40 +531,40 @@
 .bcd-page__member-name {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
 }
 
 .bcd-page__member-id {
   font-size: 0.75rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-tertiary);
 }
 
 .bcd-page__member-role {
   font-size: 0.7rem;
   padding: 0.15rem 0.45rem;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   font-weight: 500;
   text-transform: capitalize;
 }
 
 .bcd-page__member-role--owner {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .bcd-page__member-role--moderator {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--color-info-bg);
+  color: var(--color-info);
 }
 
 .bcd-page__member-role--member {
-  background: var(--bg-secondary, #f3f4f6);
-  color: var(--text-secondary, #6b7280);
+  background: var(--bg-surface);
+  color: var(--text-subtle);
 }
 
 .bcd-page__member-joined {
   font-size: 0.75rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-tertiary);
 }
 
 .bcd-page__member-progress {
@@ -572,16 +577,16 @@
 .bcd-page__mini-progress-track {
   flex: 1;
   height: 6px;
-  background: var(--border-color, #e5e7eb);
-  border-radius: 999px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .bcd-page__mini-progress-fill {
   height: 100%;
-  background: #6366f1;
-  border-radius: 999px;
-  transition: width 0.3s ease;
+  background: var(--brand-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
 }
 
 .bcd-page__member-actions {
@@ -606,22 +611,22 @@
 .bcd-page__progress-summary-item {
   text-align: center;
   padding: 1rem;
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 10px;
-  background: var(--bg-secondary, #f9fafb);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
 }
 
 .bcd-page__progress-summary-value {
   display: block;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #6366f1;
+  color: var(--brand-primary);
 }
 
 .bcd-page__progress-summary-label {
   display: block;
   font-size: 0.75rem;
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-subtle);
   margin-top: 0.2rem;
 }
 
@@ -636,15 +641,15 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.6rem 0.85rem;
-  border: 1px solid var(--border-color, #f3f4f6);
-  border-radius: 8px;
-  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
 }
 
 .bcd-page__progress-member-name {
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
   min-width: 120px;
   display: flex;
   align-items: center;
@@ -654,29 +659,29 @@
 .bcd-page__role-badge {
   font-size: 0.65rem;
   padding: 0.1rem 0.35rem;
-  border-radius: 999px;
-  background: #fef3c7;
-  color: #92400e;
+  border-radius: var(--radius-full);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .bcd-page__progress-row-bar-track {
   flex: 1;
   height: 8px;
-  background: var(--border-color, #e5e7eb);
-  border-radius: 999px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .bcd-page__progress-row-bar-fill {
   height: 100%;
-  border-radius: 999px;
-  transition: width 0.3s ease;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
 }
 
 .bcd-page__progress-row-value {
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
   min-width: 36px;
   text-align: right;
 }
@@ -686,23 +691,23 @@
 .bcd-page__leave-section {
   margin-top: 2rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border-color, #e5e7eb);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .bcd-page__leave-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid #fca5a5;
-  border-radius: 6px;
-  background: #fff;
-  color: #dc2626;
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--color-danger);
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .bcd-page__leave-btn:hover {
-  background: #fef2f2;
+  background: var(--color-danger-bg);
 }
 
 /* ── Loading / Empty ─────────────────────────────────────────────────────── */
@@ -713,14 +718,14 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 4rem 0;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-subtle);
 }
 
 .bcd-page__spinner {
   width: 24px;
   height: 24px;
-  border: 3px solid var(--border-color, #e5e7eb);
-  border-top-color: #6366f1;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--brand-primary);
   border-radius: 50%;
   animation: bcdSpin 0.8s linear infinite;
 }
@@ -735,7 +740,7 @@
 }
 
 .bcd-page__empty h2 {
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-main);
   margin-bottom: 1rem;
 }
 

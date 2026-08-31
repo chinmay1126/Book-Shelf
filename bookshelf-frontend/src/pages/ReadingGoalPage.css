@@ -4,6 +4,7 @@
   max-width: 760px;
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
+  color: var(--text-main);
 }
 
 .rg-page--loading {
@@ -13,14 +14,14 @@
   justify-content: center;
   min-height: 40vh;
   gap: 0.75rem;
-  color: #9ca3af;
+  color: var(--text-tertiary);
 }
 
 .rg-page__spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #6366f1;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--brand-primary);
   border-radius: 50%;
   animation: rg-spin 0.7s linear infinite;
 }
@@ -39,18 +40,18 @@
   gap: 0.5rem;
 }
 
-.rg-page__title { margin: 0; font-size: 1.5rem; font-weight: 700; color: #111827; }
-.rg-page__browse-link { font-size: 0.85rem; color: #6366f1; text-decoration: none; font-weight: 500; }
+.rg-page__title { margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+.rg-page__browse-link { font-size: 0.85rem; color: var(--brand-primary); text-decoration: none; font-weight: 500; }
 .rg-page__browse-link:hover { text-decoration: underline; }
 
 /* Toast */
 .rg-page__toast {
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 8px;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-sm);
   padding: 0.6rem 1rem;
   margin-bottom: 1rem;
-  color: #065f46;
+  color: var(--color-success);
   font-size: 0.88rem;
   font-weight: 500;
   animation: rg-fade 0.25s ease;
@@ -65,12 +66,13 @@
 .rg-page__stats {
   display: flex;
   gap: 0.75rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .rg-page__stat {
@@ -81,10 +83,10 @@
   min-width: 60px;
 }
 
-.rg-page__stat-value { font-size: 1.35rem; font-weight: 700; color: #111827; }
-.rg-page__stat-value--green { color: #059669; }
-.rg-page__stat-value--amber { color: #f59e0b; }
-.rg-page__stat-label { font-size: 0.72rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.03em; }
+.rg-page__stat-value { font-size: 1.35rem; font-weight: 700; color: var(--text-main); }
+.rg-page__stat-value--green { color: var(--color-success); }
+.rg-page__stat-value--amber { color: var(--color-warning); }
+.rg-page__stat-label { font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* Progress */
 .rg-page__progress-section {
@@ -98,13 +100,13 @@
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-main);
 }
 
 .rg-page__edit-goal-btn {
   background: none;
   border: none;
-  color: #6366f1;
+  color: var(--brand-primary);
   font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
@@ -114,15 +116,15 @@
 
 .rg-page__progress-track {
   height: 12px;
-  background: #e5e7eb;
-  border-radius: 6px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .rg-page__progress-fill {
   height: 100%;
-  border-radius: 6px;
-  transition: width 0.4s ease;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
 }
 
 /* Goal form */
@@ -135,43 +137,46 @@
 
 .rg-page__goal-form label {
   font-size: 0.85rem;
-  color: #374151;
+  color: var(--text-subtle);
   white-space: nowrap;
 }
 
 .rg-page__goal-input {
   width: 80px;
   padding: 0.4rem 0.6rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: border-color var(--transition-fast);
 }
 
 .rg-page__goal-input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  border-color: var(--border-focus);
 }
 
 .rg-page__save-btn {
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.4rem 0.85rem;
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
-.rg-page__save-btn:hover { background: #4f46e5; }
+.rg-page__save-btn:hover { background: var(--brand-primary-hover); }
 
 /* Section title */
 .rg-page__section-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-main);
 }
 
 /* Month grid */
@@ -184,15 +189,16 @@
 }
 
 .rg-page__month-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 0.65rem 0.8rem;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .rg-page__month-card--current {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--leather-light);
 }
 
 .rg-page__month-card--missed {
@@ -206,21 +212,21 @@
   margin-bottom: 0.35rem;
 }
 
-.rg-page__month-name { font-size: 0.8rem; font-weight: 600; color: #374151; }
-.rg-page__month-count { font-size: 0.85rem; font-weight: 700; color: #111827; }
+.rg-page__month-name { font-size: 0.8rem; font-weight: 600; color: var(--text-subtle); }
+.rg-page__month-count { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
 
 .rg-page__month-bar-track {
   height: 4px;
-  background: #e5e7eb;
+  background: var(--border-subtle);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .rg-page__month-bar-fill {
   height: 100%;
-  background: #6366f1;
+  background: var(--brand-primary);
   border-radius: 2px;
-  transition: width 0.3s ease;
+  transition: width var(--transition-base);
 }
 
 .rg-page__month-actions {
@@ -232,29 +238,29 @@
 .rg-page__month-btn {
   flex: 1;
   padding: 0.25rem;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s ease;
+  transition: all var(--transition-fast);
 }
 
 .rg-page__month-btn--add {
-  background: #ecfdf5;
-  color: #065f46;
-  border-color: #a7f3d0;
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border-color: var(--color-success-border);
 }
 
-.rg-page__month-btn--add:hover { background: #d1fae5; }
+.rg-page__month-btn--add:hover { background: var(--color-success-bg); opacity: 0.85; }
 
 .rg-page__month-btn--undo {
-  background: #fef2f2;
-  color: #991b1b;
-  border-color: #fecaca;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border-color: var(--color-danger-border);
 }
 
-.rg-page__month-btn--undo:hover { background: #fee2e2; }
+.rg-page__month-btn--undo:hover { background: var(--color-danger-bg); opacity: 0.85; }
 
 /* History */
 .rg-page__history { margin-top: 1rem; }
@@ -269,31 +275,31 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 0.6rem 0.85rem;
 }
 
-.rg-page__history-year { font-weight: 700; color: #374151; min-width: 40px; }
+.rg-page__history-year { font-weight: 700; color: var(--text-main); min-width: 40px; }
 
 .rg-page__history-bar-track {
   flex: 1;
   height: 6px;
-  background: #e5e7eb;
+  background: var(--border-subtle);
   border-radius: 3px;
   overflow: hidden;
 }
 
 .rg-page__history-bar-fill {
   height: 100%;
-  background: #a78bfa;
+  background: var(--brand-secondary);
   border-radius: 3px;
 }
 
 .rg-page__history-text {
   font-size: 0.82rem;
-  color: #6b7280;
+  color: var(--text-subtle);
   white-space: nowrap;
 }
 
@@ -303,37 +309,19 @@
   padding: 3rem 1rem;
 }
 
-.rg-page__empty h2 { margin: 0 0 0.5rem; color: #111827; }
-.rg-page__empty p { margin: 0 0 1rem; color: #6b7280; }
+.rg-page__empty h2 { margin: 0 0 0.5rem; color: var(--text-main); }
+.rg-page__empty p { margin: 0 0 1rem; color: var(--text-subtle); }
 
 .rg-page__login-btn {
   display: inline-block;
-  background: #6366f1;
+  background: var(--brand-primary);
   color: #fff;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 0.55rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
+  transition: background-color var(--transition-fast);
 }
 
-.rg-page__login-btn:hover { background: #4f46e5; }
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .rg-page__title, .rg-page__section-title { color: #f9fafb; }
-  .rg-page__stats { background: #1f2937; border-color: #374151; }
-  .rg-page__stat-value { color: #f3f4f6; }
-  .rg-page__progress-header { color: #d1d5db; }
-  .rg-page__progress-track { background: #374151; }
-  .rg-page__goal-form label { color: #d1d5db; }
-  .rg-page__goal-input { background: #111827; border-color: #4b5563; color: #f3f4f6; }
-  .rg-page__month-card { background: #1f2937; border-color: #374151; }
-  .rg-page__month-card--current { border-color: #818cf8; }
-  .rg-page__month-name { color: #d1d5db; }
-  .rg-page__month-count { color: #f3f4f6; }
-  .rg-page__month-bar-track { background: #374151; }
-  .rg-page__history-card { background: #1f2937; border-color: #374151; }
-  .rg-page__history-year { color: #d1d5db; }
-  .rg-page__empty h2 { color: #f9fafb; }
-}
+.rg-page__login-btn:hover { background: var(--brand-primary-hover); }

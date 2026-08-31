@@ -4,18 +4,19 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+  color: var(--text-main);
 }
 
 .alerts-page__title {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
 }
 
 .alerts-page__subtitle {
   font-size: 0.9rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
   margin: 0.3rem 0 1.25rem;
 }
 
@@ -23,12 +24,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-error-light, #fef2f2);
-  border: 1px solid var(--color-error-border, #fecaca);
-  border-radius: 8px;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
   padding: 0.6rem 1rem;
   margin-bottom: 1rem;
-  color: var(--color-error, #dc2626);
+  color: var(--color-danger);
   font-size: 0.85rem;
 }
 
@@ -46,10 +47,11 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  background: var(--color-surface, #fff);
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   overflow: hidden;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .alerts-page__item {
@@ -57,7 +59,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.25rem;
-  border-bottom: 1px solid var(--color-border-light, #f3f4f6);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .alerts-page__item:last-child {
@@ -74,36 +76,38 @@
 .alerts-page__book-link {
   font-size: 0.92rem;
   font-weight: 500;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color var(--transition-fast);
 }
 
 .alerts-page__book-link:hover {
-  color: var(--color-primary, #6366f1);
+  color: var(--brand-primary);
 }
 
 .alerts-page__date {
   font-size: 0.75rem;
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--text-tertiary);
 }
 
 .alerts-page__remove {
   padding: 0.3rem 0.7rem;
-  border: 1px solid var(--color-border, #d1d5db);
-  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   background: none;
-  color: var(--color-text-secondary, #374151);
+  color: var(--text-subtle);
   font-size: 0.8rem;
   cursor: pointer;
   white-space: nowrap;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .alerts-page__remove:hover {
-  border-color: var(--color-error, #dc2626);
-  color: var(--color-error, #dc2626);
+  border-color: var(--color-danger);
+  color: var(--color-danger);
 }
 
 /* Empty + loading */
@@ -111,18 +115,23 @@
 .alerts-page__empty {
   text-align: center;
   padding: 3rem 1rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
 }
 
 .alerts-page__browse {
   display: inline-block;
   margin-top: 0.75rem;
   padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  background: var(--color-primary, #6366f1);
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary);
   color: #fff;
   text-decoration: none;
   font-size: 0.88rem;
+  transition: background-color var(--transition-fast);
+}
+
+.alerts-page__browse:hover {
+  background: var(--brand-primary-hover);
 }
 
 .alerts-page__loading {
@@ -133,12 +142,12 @@
 
 .alerts-page__skeleton {
   height: 3.5rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: linear-gradient(
     90deg,
-    var(--color-skeleton, #e5e7eb) 25%,
-    var(--color-skeleton-shine, #f3f4f6) 50%,
-    var(--color-skeleton, #e5e7eb) 75%
+    var(--bg-surface) 25%,
+    var(--bg-surface-elevated) 50%,
+    var(--bg-surface) 75%
   );
   background-size: 200% 100%;
   animation: alerts-shimmer 1.5s ease-in-out infinite;
@@ -149,37 +158,16 @@
   100% { background-position: -200% 0; }
 }
 
-/* ── Dark mode ──────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  .alerts-page__list {
-    background: var(--color-surface-dark, #1f2937);
-    border-color: var(--color-border-dark, #374151);
-  }
-  .alerts-page__item {
-    border-bottom-color: var(--color-border-dark, #374151);
-  }
-}
-
-/* ── Resolved book details ──────────────────────────────────────────── */
-
-/*
- * A row is now a cover swatch, the book's details, and the remove button.
- * The swatch does not shrink: with a long title the flex row would otherwise
- * squeeze it to a sliver rather than truncating the text, which is what the
- * ellipsis on .alerts-page__book-link is for. See #422.
- */
 .alerts-page__cover {
   flex: 0 0 auto;
   width: 34px;
   height: 48px;
   margin-right: 0.9rem;
   border-radius: 3px;
-  background: var(--color-border, #e5e7eb);
+  background: var(--border-subtle);
   box-shadow: inset -2px 0 3px rgba(0, 0, 0, 0.18);
 }
 
-/* The info column takes the space the swatch and the button leave. */
 .alerts-page__info {
   flex: 1 1 auto;
 }
@@ -187,45 +175,30 @@
 .alerts-page__author,
 .alerts-page__price {
   font-size: 0.78rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
 }
 
 .alerts-page__price {
   font-variant-numeric: tabular-nums;
 }
 
-/*
- * A book the catalogue no longer has. The id is all that is known about it,
- * so it is shown — greyed and not a link, because there is nothing to link
- * to, with the sentence below saying why.
- */
 .alerts-page__book-link--missing {
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--text-tertiary);
   font-style: italic;
 }
 
 .alerts-page__unavailable {
   font-size: 0.75rem;
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--text-tertiary);
 }
 
-/* Sits under the row it belongs to rather than in the page-level banner. */
 .alerts-page__row-error {
   margin-top: 0.2rem;
   font-size: 0.75rem;
-  color: #b91c1c;
+  color: var(--color-danger);
 }
 
 .alerts-page__remove:disabled {
   opacity: 0.55;
   cursor: progress;
-}
-
-@media (prefers-color-scheme: dark) {
-  .alerts-page__cover {
-    background: var(--color-border-dark, #374151);
-  }
-  .alerts-page__row-error {
-    color: #fca5a5;
-  }
 }

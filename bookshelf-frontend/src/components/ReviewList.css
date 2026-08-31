@@ -3,7 +3,8 @@
 .review-list {
   margin-top: 2.5rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--color-border, #e5e7eb);
+  border-top: 1px solid var(--border-subtle);
+  transition: border-color var(--transition-base);
 }
 
 .review-list__header {
@@ -19,7 +20,7 @@
   font-size: 1.35rem;
   font-weight: 700;
   margin: 0;
-  color: var(--color-text, #111827);
+  color: var(--text-main);
 }
 
 /* Sort controls */
@@ -32,18 +33,24 @@
 }
 
 .review-list__sort-label {
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
   white-space: nowrap;
 }
 
 .review-list__sort-select {
   padding: 0.35rem 0.6rem;
-  border: 1px solid var(--color-border, #d1d5db);
-  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
-  background: var(--color-surface, #fff);
-  color: var(--color-text, #111827);
+  background: var(--bg-card);
+  color: var(--text-main);
   cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.review-list__sort-select:focus {
+  outline: none;
+  border-color: var(--border-focus);
 }
 
 /* Loading skeletons */
@@ -57,12 +64,12 @@
 
 .review-list__skeleton {
   height: 80px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: linear-gradient(
     90deg,
-    var(--color-skeleton, #e5e7eb) 25%,
-    var(--color-skeleton-shine, #f3f4f6) 50%,
-    var(--color-skeleton, #e5e7eb) 75%
+    var(--bg-surface) 25%,
+    var(--bg-surface-elevated) 50%,
+    var(--bg-surface) 75%
   );
   background-size: 200% 100%;
   animation: review-skeleton-shimmer 1.5s ease-in-out infinite;
@@ -82,23 +89,24 @@
 .review-list__error {
   text-align: center;
   padding: 1.5rem;
-  color: var(--color-error, #dc2626);
+  color: var(--color-danger);
   font-size: 0.9rem;
 }
 
 .review-list__retry {
   margin-top: 0.5rem;
   padding: 0.4rem 1rem;
-  border: 1px solid var(--color-error, #dc2626);
-  border-radius: 8px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   background: none;
-  color: var(--color-error, #dc2626);
+  color: var(--color-danger);
   cursor: pointer;
   font-size: 0.85rem;
+  transition: background-color var(--transition-fast);
 }
 
 .review-list__retry:hover {
-  background: var(--color-error-light, #fef2f2);
+  background: var(--color-danger-bg);
 }
 
 /* Empty state */
@@ -106,7 +114,7 @@
 .review-list__empty {
   text-align: center;
   padding: 2rem 1rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--text-subtle);
   font-size: 0.95rem;
 }
 
@@ -129,17 +137,18 @@
 
 .review-list__page-btn {
   padding: 0.4rem 0.85rem;
-  border: 1px solid var(--color-border, #d1d5db);
-  border-radius: 8px;
-  background: var(--color-surface, #fff);
-  color: var(--color-text, #111827);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
   cursor: pointer;
   font-size: 0.85rem;
-  transition: background 0.15s ease;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .review-list__page-btn:hover:not(:disabled) {
-  background: var(--color-surface-hover, #f3f4f6);
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
 }
 
 .review-list__page-btn:disabled {
@@ -149,39 +158,5 @@
 
 .review-list__page-info {
   font-size: 0.85rem;
-  color: var(--color-text-muted, #6b7280);
-}
-
-/* ── Dark mode ──────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  .review-list {
-    border-top-color: var(--color-border-dark, #374151);
-  }
-
-  .review-list__sort-select {
-    background: var(--color-surface-dark, #1f2937);
-    border-color: var(--color-border-dark, #4b5563);
-    color: var(--color-text-dark, #f9fafb);
-  }
-
-  .review-list__page-btn {
-    background: var(--color-surface-dark, #1f2937);
-    border-color: var(--color-border-dark, #4b5563);
-    color: var(--color-text-dark, #f9fafb);
-  }
-
-  .review-list__page-btn:hover:not(:disabled) {
-    background: var(--color-surface-hover-dark, #374151);
-  }
-
-  .review-list__skeleton {
-    background: linear-gradient(
-      90deg,
-      var(--color-skeleton-dark, #374151) 25%,
-      var(--color-skeleton-shine-dark, #4b5563) 50%,
-      var(--color-skeleton-dark, #374151) 75%
-    );
-    background-size: 200% 100%;
-  }
+  color: var(--text-subtle);
 }
